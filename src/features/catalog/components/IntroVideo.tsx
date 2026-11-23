@@ -6,6 +6,7 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 
 import { Text } from '@/components/ui';
 import type { Language } from '@/i18n';
+import { useIsOffline } from '@/lib/network';
 import { colors } from '@/theme/tokens';
 
 import { youtubeId } from '../localize';
@@ -26,6 +27,7 @@ export function IntroVideo({
   const { t } = useTranslation();
   const { width } = useWindowDimensions();
   const [open, setOpen] = useState(false);
+  const offline = useIsOffline();
   const id = youtubeId(url);
   if (!id) return null;
   const height = Math.round(((width - 40) * 9) / 16);
@@ -53,15 +55,17 @@ export function IntroVideo({
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={t('module.playVideo')}
+          accessibilityState={{ disabled: offline }}
+          disabled={offline}
           onPress={() => setOpen(true)}
           className="items-center justify-center gap-2 rounded-lg bg-blue-900 px-6"
           style={{ height }}
         >
           <View className="h-16 w-16 items-center justify-center rounded-full bg-white/15">
-            <Ionicons name="play" size={34} color={colors.white} />
+            <Ionicons name={offline ? 'cloud-offline-outline' : 'play'} size={34} color={colors.white} />
           </View>
           <Text variant="meta" className="text-center text-blue-100">
-            {t('module.videoData')}
+            {offline ? t('common.offline') : t('module.videoData')}
           </Text>
         </Pressable>
       )}
