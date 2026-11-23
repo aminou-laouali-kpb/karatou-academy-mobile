@@ -1,0 +1,55 @@
+{
+  "common": {
+    "continue": "Continue",
+    "check": "Check",
+    "retry": "Try again",
+    "cancel": "Cancel",
+    "close": "Close",
+    "loading": "Loading…",
+    "error": "Something went wrong.",
+    "offline": "You are offline.",
+    "empty": "Nothing to show yet."
+  },
+  "language": {
+    "label": "Language",
+    "fr": "Français",
+    "en": "English",
+    "ha": "Hausa"
+  },
+  "welcome": {
+    "title": "Karatou Academy",
+    "promise": "10 minutes a day to master AI and digital skills, in your language, even offline.",
+    "start": "Get started",
+    "haveAccount": "I already have an account",
+    "devGallery": "Component gallery (dev)"
+  },
+  "gamification": {
+    "xp": "{{count}} XP",
+    "streakDays_one": "{{count}} day",
+    "streakDays_other": "{{count}} days"
+  },
+  "dev": {
+    "title": "UI kit",
+    "buttons": "Buttons",
+    "primary": "Primary",
+    "secondary": "Secondary",
+    "gold": "Reward",
+    "ghost": "Ghost",
+    "disabled": "Disabled",
+    "cards": "Cards",
+    "cardTitle": "AI basics",
+    "cardBody": "8 lessons · 45 min",
+    "chips": "Chips",
+    "chipAll": "All",
+    "chipAi": "AI",
+    "chipDigital": "Digital",
+    "progress": "Progress bars",
+    "avatars": "Avatars",
+    "sheet": "Sheet",
+    "openSheet": "Open the sheet",
+    "sheetTitle": "That's right!",
+    "sheetBody": "An AI model learns from examples.",
+    "typography": "Typography",
+    "sampleText": "Learn by doing, one step at a time."
+  }
+}

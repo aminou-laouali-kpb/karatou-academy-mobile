@@ -1,0 +1,55 @@
+{
+  "common": {
+    "continue": "Continuer",
+    "check": "Vérifier",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "loading": "Chargement…",
+    "error": "Une erreur est survenue.",
+    "offline": "Tu es hors ligne.",
+    "empty": "Rien à afficher pour l'instant."
+  },
+  "language": {
+    "label": "Langue",
+    "fr": "Français",
+    "en": "English",
+    "ha": "Hausa"
+  },
+  "welcome": {
+    "title": "Karatou Academy",
+    "promise": "10 minutes par jour pour maîtriser l'IA et le numérique, dans ta langue, même hors connexion.",
+    "start": "Commencer",
+    "haveAccount": "J'ai déjà un compte",
+    "devGallery": "Galerie des composants (dev)"
+  },
+  "gamification": {
+    "xp": "{{count}} XP",
+    "streakDays_one": "{{count}} jour",
+    "streakDays_other": "{{count}} jours"
+  },
+  "dev": {
+    "title": "Kit UI",
+    "buttons": "Boutons",
+    "primary": "Principal",
+    "secondary": "Secondaire",
+    "gold": "Récompense",
+    "ghost": "Discret",
+    "disabled": "Désactivé",
+    "cards": "Cartes",
+    "cardTitle": "Les bases de l'IA",
+    "cardBody": "8 leçons · 45 min",
+    "chips": "Chips",
+    "chipAll": "Tout",
+    "chipAi": "IA",
+    "chipDigital": "Numérique",
+    "progress": "Barres de progression",
+    "avatars": "Avatars",
+    "sheet": "Feuille",
+    "openSheet": "Ouvrir la feuille",
+    "sheetTitle": "C'est juste !",
+    "sheetBody": "Un modèle d'IA apprend à partir d'exemples.",
+    "typography": "Typographie",
+    "sampleText": "Apprendre en faisant, une étape à la fois."
+  }
+}
