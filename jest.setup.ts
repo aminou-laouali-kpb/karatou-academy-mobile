@@ -10,3 +10,8 @@ jest.mock('react-native-mmkv', () => {
     }),
   };
 });
+
+// NetInfo n'a pas de module natif sous Jest.
+jest.mock('@react-native-community/netinfo', () =>
+  require('@react-native-community/netinfo/jest/netinfo-mock.js'),
+);

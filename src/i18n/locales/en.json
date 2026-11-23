@@ -14,7 +14,9 @@
     "saved": "Saved",
     "optional": "optional",
     "or": "or",
-    "stepOf": "Step {{current}} of {{total}}"
+    "stepOf": "Step {{current}} of {{total}}",
+    "offlineCached": "Offline: showing content saved on this phone.",
+    "offlineEmpty": "Offline. Connect once to load the content."
   },
   "language": {
     "label": "Language",
@@ -205,8 +207,12 @@
   "home": {
     "greeting": "Hello {{name}} 👋",
     "greetingNoName": "Hello 👋",
-    "soonTitle": "Your lessons are coming",
-    "soonBody": "The catalogue and the “Continue” card arrive in the next sprint."
+    "continue": "Continue",
+    "startTitle": "Start your first lesson",
+    "continueTitle": "Pick up where you left off",
+    "lessonOf": "Lesson {{current}} of {{total}}",
+    "allDone": "You've finished every module. Well done!",
+    "explore": "Explore the catalogue"
   },
   "placeholder": {
     "soon": "Coming soon"
@@ -237,5 +243,50 @@
     "word": "DELETE",
     "submit": "Delete permanently",
     "done": "Your account has been deleted."
+  },
+  "catalog": {
+    "title": "Learn",
+    "all": "All",
+    "lessons_one": "{{count}} lesson",
+    "lessons_other": "{{count}} lessons",
+    "certifying": "Certificate",
+    "progress": "{{percent}}% done",
+    "completed": "Completed",
+    "empty": "No modules in this topic yet.",
+    "levels": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced"
+    }
+  },
+  "module": {
+    "introVideo": "Intro video",
+    "playVideo": "Play the intro video",
+    "videoData": "Uses mobile data. Plays only when you tap.",
+    "videoLang": "Video in {{language}}",
+    "path": "Your path",
+    "lessonNumber": "Lesson {{number}}",
+    "start": "Start",
+    "certificate": "Certificate",
+    "certificateHint": "Finish every lesson to earn it.",
+    "certificateReady": "All lessons done!",
+    "notFound": "This module could not be found.",
+    "state": {
+      "done": "done",
+      "current": "in progress",
+      "available": "available",
+      "locked": "locked"
+    }
+  },
+  "lessonSheet": {
+    "xp": "+{{count}} XP",
+    "done": "Lesson completed",
+    "start": "Start",
+    "replay": "Replay the lesson",
+    "locked": "Finish the previous lesson to unlock this one."
+  },
+  "lesson": {
+    "soonTitle": "The player is coming soon",
+    "soonBody": "Interactive lessons arrive in the next sprint (S4)."
   }
 }

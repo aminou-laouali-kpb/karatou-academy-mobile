@@ -15,7 +15,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { startAuthListener, useAuth } from '@/features/auth/store';
 import { useSyncPreferredLanguage } from '@/features/profile/api';
 import { posthog } from '@/lib/analytics';
-import { queryClient, queryPersister } from '@/lib/queryClient';
+import '@/lib/network';
+import { PERSIST_MAX_AGE, queryClient, queryPersister } from '@/lib/queryClient';
 import { initSentry, Sentry } from '@/lib/sentry';
 import { appFonts } from '@/theme/fonts';
 
@@ -50,6 +51,8 @@ function RootStack() {
       <Stack.Protected guard={signedIn && !recovering}>
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="settings" />
+        <Stack.Screen name="module/[slug]" />
+        <Stack.Screen name="lesson/[moduleSlug]/[courseId]" options={{ presentation: 'fullScreenModal' }} />
       </Stack.Protected>
       <Stack.Screen name="index" />
       <Stack.Screen name="auth/callback" />
@@ -73,7 +76,10 @@ function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <PersistQueryClientProvider client={queryClient} persistOptions={{ persister: queryPersister }}>
+        <PersistQueryClientProvider
+          client={queryClient}
+          persistOptions={{ persister: queryPersister, maxAge: PERSIST_MAX_AGE, buster: 'v1' }}
+        >
           <Analytics>
             <BottomSheetModalProvider>
               <StatusBar style="dark" />

@@ -14,7 +14,9 @@
     "saved": "An ajiye",
     "optional": "ba dole ba",
     "or": "ko",
-    "stepOf": "Mataki na {{current}} cikin {{total}}"
+    "stepOf": "Mataki na {{current}} cikin {{total}}",
+    "offlineCached": "Ba intanet: ana nuna abin da aka ajiye a wayar.",
+    "offlineEmpty": "Ba intanet. Haɗa sau ɗaya don loda abubuwan."
   },
   "language": {
     "label": "Harshe",
@@ -205,8 +207,12 @@
   "home": {
     "greeting": "Sannu {{name}} 👋",
     "greetingNoName": "Sannu 👋",
-    "soonTitle": "Darussanka suna zuwa",
-    "soonBody": "Jerin darussa da katin “Ci gaba” za su zo a mataki na gaba."
+    "continue": "Ci gaba",
+    "startTitle": "Fara darasinka na farko",
+    "continueTitle": "Ci gaba daga inda ka tsaya",
+    "lessonOf": "Darasi na {{current}} cikin {{total}}",
+    "allDone": "Ka kammala dukkan darussa. Madalla!",
+    "explore": "Duba jerin darussa"
   },
   "placeholder": {
     "soon": "Yana nan tafe"
@@ -237,5 +243,50 @@
     "word": "GOGE",
     "submit": "Goge har abada",
     "done": "An goge asusunka."
+  },
+  "catalog": {
+    "title": "Koyo",
+    "all": "Duka",
+    "lessons_one": "Darasi {{count}}",
+    "lessons_other": "Darussa {{count}}",
+    "certifying": "Da takardar shaida",
+    "progress": "An kammala {{percent}}%",
+    "completed": "An kammala",
+    "empty": "Babu darussa a wannan fanni tukuna.",
+    "levels": {
+      "beginner": "Mai farawa",
+      "intermediate": "Matsakaici",
+      "advanced": "Ci gaba"
+    }
+  },
+  "module": {
+    "introVideo": "Bidiyon gabatarwa",
+    "playVideo": "Kunna bidiyon gabatarwa",
+    "videoData": "Yana amfani da data. Yana kunnuwa ne kawai idan ka taɓa.",
+    "videoLang": "Bidiyo da {{language}}",
+    "path": "Hanyar karatunka",
+    "lessonNumber": "Darasi na {{number}}",
+    "start": "Fara",
+    "certificate": "Takardar shaida",
+    "certificateHint": "Kammala dukkan darussa don samun ta.",
+    "certificateReady": "An kammala dukkan darussa!",
+    "notFound": "Ba a sami wannan darasin ba.",
+    "state": {
+      "done": "an kammala",
+      "current": "ana yi",
+      "available": "akwai",
+      "locked": "a kulle"
+    }
+  },
+  "lessonSheet": {
+    "xp": "+{{count}} XP",
+    "done": "An kammala darasi",
+    "start": "Fara",
+    "replay": "Sake duba darasin",
+    "locked": "Kammala darasin da ya gabata don buɗe wannan."
+  },
+  "lesson": {
+    "soonTitle": "Mai kunna darasi yana zuwa",
+    "soonBody": "Darussa masu mu'amala za su zo a mataki na gaba (S4)."
   }
 }

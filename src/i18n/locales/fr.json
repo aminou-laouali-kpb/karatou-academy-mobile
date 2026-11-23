@@ -14,7 +14,9 @@
     "saved": "Enregistré",
     "optional": "facultatif",
     "or": "ou",
-    "stepOf": "Étape {{current}} sur {{total}}"
+    "stepOf": "Étape {{current}} sur {{total}}",
+    "offlineCached": "Hors ligne : contenu enregistré sur le téléphone.",
+    "offlineEmpty": "Hors ligne. Connecte-toi une première fois pour charger le contenu."
   },
   "language": {
     "label": "Langue",
@@ -205,8 +207,12 @@
   "home": {
     "greeting": "Bonjour {{name}} 👋",
     "greetingNoName": "Bonjour 👋",
-    "soonTitle": "Tes leçons arrivent",
-    "soonBody": "Le catalogue et la carte « Continuer » arrivent au prochain sprint."
+    "continue": "Continuer",
+    "startTitle": "Commence ta première leçon",
+    "continueTitle": "Reprends où tu t'es arrêté·e",
+    "lessonOf": "Leçon {{current}} sur {{total}}",
+    "allDone": "Tu as terminé tous les modules. Bravo !",
+    "explore": "Explorer le catalogue"
   },
   "placeholder": {
     "soon": "Bientôt disponible"
@@ -237,5 +243,50 @@
     "word": "SUPPRIMER",
     "submit": "Supprimer définitivement",
     "done": "Ton compte a été supprimé."
+  },
+  "catalog": {
+    "title": "Apprendre",
+    "all": "Tout",
+    "lessons_one": "{{count}} leçon",
+    "lessons_other": "{{count}} leçons",
+    "certifying": "Certifiant",
+    "progress": "{{percent}} % terminé",
+    "completed": "Terminé",
+    "empty": "Aucun module dans cette rubrique pour l'instant.",
+    "levels": {
+      "beginner": "Débutant",
+      "intermediate": "Intermédiaire",
+      "advanced": "Avancé"
+    }
+  },
+  "module": {
+    "introVideo": "Vidéo d'introduction",
+    "playVideo": "Lire la vidéo d'introduction",
+    "videoData": "Utilise des données mobiles. Lecture seulement si tu appuies.",
+    "videoLang": "Vidéo en {{language}}",
+    "path": "Ton parcours",
+    "lessonNumber": "Leçon {{number}}",
+    "start": "Commencer",
+    "certificate": "Certificat",
+    "certificateHint": "Termine toutes les leçons pour l'obtenir.",
+    "certificateReady": "Toutes les leçons sont faites !",
+    "notFound": "Ce module est introuvable.",
+    "state": {
+      "done": "terminée",
+      "current": "en cours",
+      "available": "disponible",
+      "locked": "verrouillée"
+    }
+  },
+  "lessonSheet": {
+    "xp": "+{{count}} XP",
+    "done": "Leçon terminée",
+    "start": "Commencer",
+    "replay": "Revoir la leçon",
+    "locked": "Termine la leçon précédente pour débloquer celle-ci."
+  },
+  "lesson": {
+    "soonTitle": "Le lecteur arrive bientôt",
+    "soonBody": "Les leçons interactives arrivent au prochain sprint (S4)."
   }
 }
