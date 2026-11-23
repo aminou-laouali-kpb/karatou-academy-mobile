@@ -18,7 +18,9 @@ function placeholders(value: string) {
 }
 
 function get(tree: Tree, path: string): string {
-  return path.split('.').reduce<Tree | string>((node, k) => (node as Tree)[k] as Tree | string, tree) as string;
+  return path
+    .split('.')
+    .reduce<Tree | string>((node, k) => (node as Tree)[k] as Tree | string, tree) as string;
 }
 
 const locales = { fr, en, ha } as Record<string, Tree>;

@@ -11,12 +11,11 @@
       "bundleIdentifier": "academy.karatou.app",
       "supportsTablet": false,
       "icon": "./assets/expo.icon",
-      "associatedDomains": [
-        "applinks:course.karatou.academy"
-      ],
+      "associatedDomains": ["applinks:course.karatou.academy"],
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "usesAppleSignIn": true
     },
     "android": {
       "package": "academy.karatou.app",
@@ -38,10 +37,7 @@
               "pathPrefix": "/learn"
             }
           ],
-          "category": [
-            "BROWSABLE",
-            "DEFAULT"
-          ]
+          "category": ["BROWSABLE", "DEFAULT"]
         }
       ]
     },
@@ -61,7 +57,9 @@
           "imageWidth": 76
         }
       ],
-      "@sentry/react-native"
+      "@sentry/react-native",
+      "expo-web-browser",
+      "expo-apple-authentication"
     ],
     "experiments": {
       "typedRoutes": true,

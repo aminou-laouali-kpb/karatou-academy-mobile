@@ -29,7 +29,11 @@ export function Avatar({ name, uri, size = 44, ring = 'none', className }: Avata
       accessible
       accessibilityRole="image"
       accessibilityLabel={name}
-      className={cn('items-center justify-center overflow-hidden rounded-full bg-blue-100', ringClass[ring], className)}
+      className={cn(
+        'items-center justify-center overflow-hidden rounded-full bg-blue-100',
+        ringClass[ring],
+        className,
+      )}
       style={{ width: size, height: size }}
     >
       {uri ? (

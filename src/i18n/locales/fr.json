@@ -8,7 +8,15 @@
     "loading": "Chargement…",
     "error": "Une erreur est survenue.",
     "offline": "Tu es hors ligne.",
-    "empty": "Rien à afficher pour l'instant."
+    "empty": "Rien à afficher pour l'instant.",
+    "back": "Retour",
+    "save": "Enregistrer",
+    "saved": "Enregistré",
+    "optional": "facultatif",
+    "or": "ou",
+    "stepOf": "Étape {{current}} sur {{total}}",
+    "offlineCached": "Hors ligne : contenu enregistré sur le téléphone.",
+    "offlineEmpty": "Hors ligne. Connecte-toi une première fois pour charger le contenu."
   },
   "language": {
     "label": "Langue",
@@ -51,5 +59,289 @@
     "sheetBody": "Un modèle d'IA apprend à partir d'exemples.",
     "typography": "Typographie",
     "sampleText": "Apprendre en faisant, une étape à la fois."
+  },
+  "onboarding": {
+    "language": {
+      "title": "Dans quelle langue veux-tu apprendre ?",
+      "hint": "Tu pourras changer à tout moment."
+    },
+    "goal": {
+      "title": "Pourquoi veux-tu apprendre ?",
+      "career": "Trouver un emploi ou évoluer",
+      "studies": "Réussir mes études",
+      "business": "Développer mon activité",
+      "daily": "M'en servir au quotidien",
+      "curiosity": "Par curiosité"
+    },
+    "level": {
+      "title": "Où en es-tu avec l'IA et le numérique ?",
+      "beginner": "Je débute",
+      "beginnerHint": "Je n'ai jamais utilisé d'outil d'IA.",
+      "basics": "J'ai quelques bases",
+      "basicsHint": "J'ai déjà essayé ChatGPT ou un outil similaire.",
+      "confident": "Je suis à l'aise",
+      "confidentHint": "Je m'en sers souvent et je veux aller plus loin."
+    },
+    "moment": {
+      "title": "Quand préfères-tu apprendre ?",
+      "morning": "Le matin",
+      "midday": "À midi",
+      "evening": "Le soir",
+      "night": "La nuit"
+    },
+    "dailyGoal": {
+      "title": "Quel est ton objectif quotidien ?",
+      "hint": "Tu pourras le modifier dans les paramètres.",
+      "light": "Léger",
+      "regular": "Régulier",
+      "intense": "Intense",
+      "detail": "{{minutes}} min par jour · {{xp}} XP"
+    },
+    "reminder": {
+      "title": "On te rappelle d'apprendre ?",
+      "hint": "Un petit rappel par jour aide à garder le rythme.",
+      "none": "Pas de rappel",
+      "at": "À {{time}}"
+    },
+    "plan": {
+      "eyebrow": "Ton plan d'apprentissage",
+      "title": "Tout est prêt pour toi",
+      "daily": "{{minutes}} minutes par jour",
+      "dailyHint": "Objectif {{goal}} : {{xp}} XP",
+      "reminder": "Rappel à {{time}}",
+      "noReminder": "Sans rappel",
+      "start": "Commencer par les bases",
+      "startHint": "Les premières leçons s'adaptent à ton niveau.",
+      "offline": "Leçons disponibles hors connexion",
+      "cta": "Créer mon compte"
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "Bon retour !",
+      "subtitle": "Connecte-toi pour retrouver ta progression.",
+      "submit": "Se connecter",
+      "forgot": "Mot de passe oublié ?",
+      "noAccount": "Pas encore de compte ? Créer un compte"
+    },
+    "signUp": {
+      "title": "Crée ton compte",
+      "subtitle": "Le même compte sert sur le web et sur l'app.",
+      "submit": "Créer mon compte",
+      "haveAccount": "Déjà un compte ? Se connecter",
+      "terms": "En créant un compte, tu acceptes les conditions d'utilisation et la politique de confidentialité."
+    },
+    "fields": {
+      "fullName": "Nom complet",
+      "fullNameHint": "Il apparaîtra sur tes certificats.",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "passwordHint": "Au moins {{count}} caractères.",
+      "newPassword": "Nouveau mot de passe",
+      "confirmPassword": "Confirme le mot de passe",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "country": "Pays",
+      "countryPlaceholder": "Choisis ton pays",
+      "otherCountry": "Autre pays",
+      "gender": "Genre"
+    },
+    "gender": {
+      "female": "Femme",
+      "male": "Homme",
+      "other": "Autre",
+      "prefer_not_to_say": "Je préfère ne pas répondre"
+    },
+    "social": {
+      "google": "Continuer avec Google",
+      "apple": "Continuer avec Apple"
+    },
+    "checkEmail": {
+      "title": "Vérifie ta boîte mail",
+      "body": "Nous avons envoyé un lien de confirmation à {{email}}. Ouvre-le sur ce téléphone pour activer ton compte.",
+      "spam": "Rien reçu ? Regarde dans les courriers indésirables.",
+      "toSignIn": "J'ai confirmé, me connecter"
+    },
+    "forgot": {
+      "title": "Mot de passe oublié",
+      "subtitle": "Saisis ton adresse : nous t'enverrons un lien pour en choisir un nouveau.",
+      "submit": "Envoyer le lien",
+      "sent": "Si un compte existe pour {{email}}, un lien vient d'être envoyé. Ouvre-le sur ce téléphone."
+    },
+    "reset": {
+      "title": "Choisis un nouveau mot de passe",
+      "submit": "Enregistrer le mot de passe",
+      "done": "Mot de passe modifié.",
+      "noSession": "Ce lien n'est plus valable. Demande un nouveau lien."
+    },
+    "callback": {
+      "working": "Connexion en cours…",
+      "failed": "Impossible de terminer la connexion.",
+      "toSignIn": "Retour à la connexion"
+    },
+    "errors": {
+      "emailInvalid": "Saisis une adresse e-mail valide.",
+      "passwordTooShort": "Le mot de passe doit faire au moins {{count}} caractères.",
+      "passwordsDiffer": "Les deux mots de passe ne correspondent pas.",
+      "nameRequired": "Saisis ton nom complet.",
+      "countryRequired": "Choisis ton pays.",
+      "invalidCredentials": "E-mail ou mot de passe incorrect.",
+      "emailNotConfirmed": "Confirme d'abord ton adresse grâce au lien reçu par e-mail.",
+      "userExists": "Un compte existe déjà avec cette adresse. Connecte-toi.",
+      "weakPassword": "Ce mot de passe est trop faible. Choisis-en un plus long.",
+      "samePassword": "Choisis un mot de passe différent de l'ancien.",
+      "rateLimited": "Trop d'essais. Patiente quelques minutes puis réessaie.",
+      "network": "Pas de connexion. Vérifie ton réseau et réessaie.",
+      "linkExpired": "Ce lien a expiré ou a déjà servi. Demande un nouveau lien.",
+      "unavailable": "Ce service n'est pas encore disponible. Réessaie plus tard.",
+      "cancelled": "Connexion annulée.",
+      "unknown": "Une erreur est survenue. Réessaie."
+    }
+  },
+  "tabs": {
+    "home": "Accueil",
+    "learn": "Apprendre",
+    "league": "Ligue",
+    "profile": "Profil"
+  },
+  "home": {
+    "greeting": "Bonjour {{name}} 👋",
+    "greetingNoName": "Bonjour 👋",
+    "continue": "Continuer",
+    "startTitle": "Commence ta première leçon",
+    "continueTitle": "Reprends où tu t'es arrêté·e",
+    "lessonOf": "Leçon {{current}} sur {{total}}",
+    "allDone": "Tu as terminé tous les modules. Bravo !",
+    "explore": "Explorer le catalogue"
+  },
+  "placeholder": {
+    "soon": "Bientôt disponible"
+  },
+  "profile": {
+    "title": "Profil",
+    "noName": "Apprenant·e",
+    "edit": "Modifier mon profil",
+    "signOut": "Se déconnecter",
+    "deleteAccount": "Supprimer mon compte",
+    "admin": {
+      "title": "Espace d'administration",
+      "body": "Ton compte a aussi un rôle d'administration. Les outils d'administration sont sur le web.",
+      "open": "Ouvrir l'espace admin sur le web"
+    },
+    "role": {
+      "platform_admin": "Administrateur·rice de la plateforme",
+      "enterprise_admin": "Administrateur·rice d'organisation"
+    }
+  },
+  "editProfile": {
+    "title": "Modifier mon profil"
+  },
+  "deleteAccount": {
+    "title": "Supprimer mon compte",
+    "body": "Ton compte, ta progression, tes XP et tes certificats seront supprimés définitivement, sur l'app comme sur le web. Cette action est irréversible.",
+    "confirmLabel": "Pour confirmer, écris {{word}}",
+    "word": "SUPPRIMER",
+    "submit": "Supprimer définitivement",
+    "done": "Ton compte a été supprimé."
+  },
+  "catalog": {
+    "title": "Apprendre",
+    "all": "Tout",
+    "lessons_one": "{{count}} leçon",
+    "lessons_other": "{{count}} leçons",
+    "certifying": "Certifiant",
+    "progress": "{{percent}} % terminé",
+    "completed": "Terminé",
+    "empty": "Aucun module dans cette rubrique pour l'instant.",
+    "levels": {
+      "beginner": "Débutant",
+      "intermediate": "Intermédiaire",
+      "advanced": "Avancé"
+    }
+  },
+  "module": {
+    "introVideo": "Vidéo d'introduction",
+    "playVideo": "Lire la vidéo d'introduction",
+    "videoData": "Utilise des données mobiles. Lecture seulement si tu appuies.",
+    "videoLang": "Vidéo en {{language}}",
+    "path": "Ton parcours",
+    "lessonNumber": "Leçon {{number}}",
+    "start": "Commencer",
+    "certificate": "Certificat",
+    "certificateHint": "Termine toutes les leçons pour l'obtenir.",
+    "certificateReady": "Toutes les leçons sont faites !",
+    "notFound": "Ce module est introuvable.",
+    "state": {
+      "done": "terminée",
+      "current": "en cours",
+      "available": "disponible",
+      "locked": "verrouillée"
+    }
+  },
+  "lessonSheet": {
+    "xp": "+{{count}} XP",
+    "done": "Leçon terminée",
+    "start": "Commencer",
+    "replay": "Revoir la leçon",
+    "locked": "Termine la leçon précédente pour débloquer celle-ci."
+  },
+  "lesson": {
+    "close": "Quitter la leçon",
+    "progress": "Étape {{current}} sur {{total}}",
+    "start": "Commencer",
+    "continue": "Continuer",
+    "check": "Vérifier",
+    "retry": "Réessayer",
+    "reveal": "Révéler la solution",
+    "finish": "Terminer la leçon",
+    "done": "C'est fait",
+    "quitTitle": "Quitter la leçon ?",
+    "quitBody": "Ta progression dans cette leçon sera perdue.",
+    "quitConfirm": "Quitter",
+    "quitCancel": "Rester",
+    "lessonNumber": "Leçon {{number}}",
+    "minutes": "≈ {{count}} min",
+    "objective": "Objectif",
+    "video": "Vidéo de la leçon",
+    "challenge": "Le défi",
+    "thinkFirst": "Comment t'y prendrais-tu ? Réfléchis, puis révèle la solution.",
+    "solution": "La solution",
+    "impact": "Le résultat",
+    "practice": "À toi de jouer",
+    "observation": "Ce qu'il faut observer",
+    "reflection": "Réflexion",
+    "reflectionPlaceholder": "Écris ta réponse…",
+    "reflectionPrivate": "Ta réponse reste sur ton téléphone.",
+    "recap": "À retenir",
+    "question": "Question",
+    "againBadge": "Question revue",
+    "correctTitle": "Bien joué !",
+    "incorrectTitle": "Pas tout à fait",
+    "revealedTitle": "La bonne réponse : {{answer}}",
+    "revealedLater": "On reverra cette question à la fin de la leçon.",
+    "xpGain": "+{{count}} XP",
+    "bodyLangNotice": "Cette leçon n'existe pas encore en {{language}} : elle s'affiche en français.",
+    "loading": "Chargement de la leçon",
+    "errorTitle": "Impossible de charger la leçon",
+    "errorBody": "Vérifie ta connexion, puis réessaie.",
+    "offlineTitle": "Leçon non disponible hors ligne",
+    "offlineBody": "Ouvre cette leçon une première fois avec une connexion : elle restera ensuite disponible.",
+    "emptyTitle": "Cette leçon arrive bientôt sur mobile",
+    "emptyBody": "Son contenu n'est pas encore dans l'app. Tu peux la suivre sur course.karatou.academy."
+  },
+  "lessonComplete": {
+    "title": "Leçon terminée !",
+    "xpTotal": "+{{count}} XP",
+    "xpLesson": "Leçon terminée",
+    "xpSteps": "Exercices",
+    "xpPerfect": "Sans faute",
+    "replay": "Leçon déjà faite : 25 % du bonus.",
+    "estimate": "Estimation : le total officiel arrivera avec la synchronisation.",
+    "accuracy": "Précision",
+    "duration": "Durée",
+    "minutes": "{{count}} min",
+    "synced": "Progression enregistrée",
+    "pending": "En attente de synchronisation",
+    "continue": "Continuer"
   }
 }

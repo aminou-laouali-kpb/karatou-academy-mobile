@@ -27,6 +27,9 @@ export const supabase = createClient<Database>(
       autoRefreshToken: true,
       persistSession: true,
       detectSessionInUrl: false,
+      // PKCE : les liens d'e-mail et l'OAuth reviennent avec un `?code=` à échanger
+      // (karatou://auth/callback, karatou://reset-password).
+      flowType: 'pkce',
     },
   },
 );

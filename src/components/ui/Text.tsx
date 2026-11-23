@@ -1,18 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import { Text as RNText, type TextProps as RNTextProps } from 'react-native';
 
 import { cn } from './cn';
 
 export type TextVariant =
-  | 'display'
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'body-lg'
-  | 'body'
-  | 'label'
-  | 'meta'
-  | 'eyebrow'
-  | 'mono';
+  'display' | 'h1' | 'h2' | 'h3' | 'body-lg' | 'body' | 'label' | 'meta' | 'eyebrow' | 'mono';
 
 const variantClass: Record<TextVariant, string> = {
   display: 'font-heading text-display text-gray-900',
@@ -29,6 +21,13 @@ const variantClass: Record<TextVariant, string> = {
 
 const headingVariants: TextVariant[] = ['display', 'h1', 'h2', 'h3'];
 
+/**
+ * Literata n'a pas les lettres hausa (ƙ, ɗ, ɓ, ƴ et leurs majuscules) : un titre hausa
+ * mélangerait deux polices au milieu d'un mot. En hausa, les titres passent donc en
+ * Inter gras, qui les a toutes (vérifié dans les fichiers .ttf).
+ */
+const SERIF_FREE_LANGUAGES = new Set(['ha']);
+
 export type TextProps = RNTextProps & { variant?: TextVariant; className?: string };
 
 /**
@@ -37,11 +36,17 @@ export type TextProps = RNTextProps & { variant?: TextVariant; className?: strin
  * pour que les mises en page tiennent sur les petits écrans.
  */
 export function Text({ variant = 'body', className, maxFontSizeMultiplier = 1.3, ...props }: TextProps) {
+  const { i18n } = useTranslation();
+  const noSerif = SERIF_FREE_LANGUAGES.has(i18n.language);
   return (
     <RNText
       accessibilityRole={headingVariants.includes(variant) ? 'header' : undefined}
       maxFontSizeMultiplier={maxFontSizeMultiplier}
-      className={cn(variantClass[variant], className)}
+      className={cn(
+        variantClass[variant],
+        noSerif && variantClass[variant].includes('font-heading') && 'font-body-bold',
+        className,
+      )}
       {...props}
     />
   );

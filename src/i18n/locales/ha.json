@@ -8,7 +8,15 @@
     "loading": "Ana lodawa…",
     "error": "An sami matsala.",
     "offline": "Ba ka da intanet.",
-    "empty": "Babu abin nunawa yanzu."
+    "empty": "Babu abin nunawa yanzu.",
+    "back": "Koma baya",
+    "save": "Ajiye",
+    "saved": "An ajiye",
+    "optional": "ba dole ba",
+    "or": "ko",
+    "stepOf": "Mataki na {{current}} cikin {{total}}",
+    "offlineCached": "Ba intanet: ana nuna abin da aka ajiye a wayar.",
+    "offlineEmpty": "Ba intanet. Haɗa sau ɗaya don loda abubuwan."
   },
   "language": {
     "label": "Harshe",
@@ -51,5 +59,289 @@
     "sheetBody": "Samfurin AI yana koyo daga misalai.",
     "typography": "Rubutu",
     "sampleText": "Koyo ta hanyar aikatawa, mataki ɗaya bayan ɗaya."
+  },
+  "onboarding": {
+    "language": {
+      "title": "Da wane harshe kake son koyo?",
+      "hint": "Za ka iya canzawa a kowane lokaci."
+    },
+    "goal": {
+      "title": "Me ya sa kake son koyo?",
+      "career": "Samun aiki ko ci gaba a aiki",
+      "studies": "Samun nasara a karatuna",
+      "business": "Bunƙasa kasuwancina",
+      "daily": "Amfani da shi a rayuwar yau da kullum",
+      "curiosity": "Don sha'awa"
+    },
+    "level": {
+      "title": "Ina ka kai a fannin AI da fasahar zamani?",
+      "beginner": "Sabon shiga ne ni",
+      "beginnerHint": "Ban taɓa amfani da kayan aikin AI ba.",
+      "basics": "Na san abubuwa kaɗan",
+      "basicsHint": "Na taɓa gwada ChatGPT ko makamancinsa.",
+      "confident": "Na ƙware",
+      "confidentHint": "Ina yawan amfani da shi kuma ina son zurfafawa."
+    },
+    "moment": {
+      "title": "Yaushe ka fi son koyo?",
+      "morning": "Da safe",
+      "midday": "Da rana",
+      "evening": "Da yamma",
+      "night": "Da dare"
+    },
+    "dailyGoal": {
+      "title": "Mene ne burinka na kullum?",
+      "hint": "Za ka iya canza shi a saituna.",
+      "light": "Sauƙi",
+      "regular": "Na yau da kullum",
+      "intense": "Mai ƙarfi",
+      "detail": "Minti {{minutes}} a rana · {{xp}} XP"
+    },
+    "reminder": {
+      "title": "Mu tunatar da kai ka yi karatu?",
+      "hint": "Ƙaramin tunatarwa a kowace rana yana taimaka maka ka ci gaba.",
+      "none": "Babu tunatarwa",
+      "at": "Da ƙarfe {{time}}"
+    },
+    "plan": {
+      "eyebrow": "Tsarin karatunka",
+      "title": "Komai ya shirya maka",
+      "daily": "Minti {{minutes}} a rana",
+      "dailyHint": "Burin {{goal}}: {{xp}} XP",
+      "reminder": "Tunatarwa da ƙarfe {{time}}",
+      "noReminder": "Babu tunatarwa",
+      "start": "Fara daga tushe",
+      "startHint": "Darussan farko za su dace da matakinka.",
+      "offline": "Darussa ana samunsu ba tare da intanet ba",
+      "cta": "Ƙirƙiri asusuna"
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "Barka da dawowa!",
+      "subtitle": "Shiga don ci gaba daga inda ka tsaya.",
+      "submit": "Shiga",
+      "forgot": "Ka manta kalmar sirri?",
+      "noAccount": "Ba ka da asusu? Ƙirƙiri ɗaya"
+    },
+    "signUp": {
+      "title": "Ƙirƙiri asusunka",
+      "subtitle": "Asusu ɗaya ne a yanar gizo da a manhaja.",
+      "submit": "Ƙirƙiri asusuna",
+      "haveAccount": "Kana da asusu? Shiga",
+      "terms": "Ta ƙirƙirar asusu, ka amince da sharuɗɗan amfani da manufar sirri."
+    },
+    "fields": {
+      "fullName": "Cikakken suna",
+      "fullNameHint": "Zai bayyana a kan takardun shaidarka.",
+      "email": "Adireshin imel",
+      "password": "Kalmar sirri",
+      "passwordHint": "Aƙalla haruffa {{count}}.",
+      "newPassword": "Sabuwar kalmar sirri",
+      "confirmPassword": "Tabbatar da kalmar sirri",
+      "showPassword": "Nuna kalmar sirri",
+      "hidePassword": "Ɓoye kalmar sirri",
+      "country": "Ƙasa",
+      "countryPlaceholder": "Zaɓi ƙasarka",
+      "otherCountry": "Wata ƙasa",
+      "gender": "Jinsi"
+    },
+    "gender": {
+      "female": "Mace",
+      "male": "Namiji",
+      "other": "Wani",
+      "prefer_not_to_say": "Na fi son kada in faɗa"
+    },
+    "social": {
+      "google": "Ci gaba da Google",
+      "apple": "Ci gaba da Apple"
+    },
+    "checkEmail": {
+      "title": "Duba akwatin imel ɗinka",
+      "body": "Mun aika hanyar tabbatarwa zuwa {{email}}. Buɗe ta a wannan wayar don kunna asusunka.",
+      "spam": "Ba ka samu ba? Duba cikin saƙonnin banza.",
+      "toSignIn": "Na tabbatar, in shiga"
+    },
+    "forgot": {
+      "title": "Kalmar sirri da aka manta",
+      "subtitle": "Shigar da imel ɗinka: za mu aiko maka da hanyar zaɓar sabuwa.",
+      "submit": "Aika hanyar",
+      "sent": "Idan akwai asusu na {{email}}, an aika hanya. Buɗe ta a wannan wayar."
+    },
+    "reset": {
+      "title": "Zaɓi sabuwar kalmar sirri",
+      "submit": "Ajiye kalmar sirri",
+      "done": "An canza kalmar sirri.",
+      "noSession": "Wannan hanyar ba ta aiki yanzu. Nemi sabuwa."
+    },
+    "callback": {
+      "working": "Ana shigar da kai…",
+      "failed": "Ba mu iya kammala shigar da kai ba.",
+      "toSignIn": "Koma wajen shiga"
+    },
+    "errors": {
+      "emailInvalid": "Shigar da ingantaccen adireshin imel.",
+      "passwordTooShort": "Kalmar sirri ta zama aƙalla haruffa {{count}}.",
+      "passwordsDiffer": "Kalmomin sirrin biyu ba su yi daidai ba.",
+      "nameRequired": "Shigar da cikakken sunanka.",
+      "countryRequired": "Zaɓi ƙasarka.",
+      "invalidCredentials": "Imel ko kalmar sirri ba daidai ba ne.",
+      "emailNotConfirmed": "Ka fara tabbatar da adireshinka da hanyar da aka aiko maka ta imel.",
+      "userExists": "Akwai asusu da wannan imel. Ka shiga.",
+      "weakPassword": "Wannan kalmar sirri ba ta da ƙarfi. Zaɓi mai tsawo.",
+      "samePassword": "Zaɓi kalmar sirri daban da ta da.",
+      "rateLimited": "An yi ƙoƙari da yawa. Jira 'yan mintoci sannan ka sake gwadawa.",
+      "network": "Babu haɗi. Duba hanyar sadarwarka ka sake gwadawa.",
+      "linkExpired": "Wannan hanyar ta ƙare ko an riga an yi amfani da ita. Nemi sabuwa.",
+      "unavailable": "Wannan sabis ba ya samuwa tukuna. Sake gwadawa nan gaba.",
+      "cancelled": "An soke shiga.",
+      "unknown": "Wani abu ya faru. Sake gwadawa."
+    }
+  },
+  "tabs": {
+    "home": "Gida",
+    "learn": "Koyo",
+    "league": "Gasa",
+    "profile": "Bayanan kai"
+  },
+  "home": {
+    "greeting": "Sannu {{name}} 👋",
+    "greetingNoName": "Sannu 👋",
+    "continue": "Ci gaba",
+    "startTitle": "Fara darasinka na farko",
+    "continueTitle": "Ci gaba daga inda ka tsaya",
+    "lessonOf": "Darasi na {{current}} cikin {{total}}",
+    "allDone": "Ka kammala dukkan darussa. Madalla!",
+    "explore": "Duba jerin darussa"
+  },
+  "placeholder": {
+    "soon": "Yana nan tafe"
+  },
+  "profile": {
+    "title": "Bayanan kai",
+    "noName": "Ɗalibi",
+    "edit": "Gyara bayanan kaina",
+    "signOut": "Fita",
+    "deleteAccount": "Goge asusuna",
+    "admin": {
+      "title": "Wurin gudanarwa",
+      "body": "Asusunka yana da matsayin gudanarwa. Kayan gudanarwa suna yanar gizo.",
+      "open": "Buɗe wurin gudanarwa a yanar gizo"
+    },
+    "role": {
+      "platform_admin": "Mai gudanar da dandali",
+      "enterprise_admin": "Mai gudanar da ƙungiya"
+    }
+  },
+  "editProfile": {
+    "title": "Gyara bayanan kaina"
+  },
+  "deleteAccount": {
+    "title": "Goge asusuna",
+    "body": "Za a goge asusunka, ci gabanka, XP da takardun shaidarka har abada, a manhaja da yanar gizo. Ba za a iya mayar da shi ba.",
+    "confirmLabel": "Don tabbatarwa, rubuta {{word}}",
+    "word": "GOGE",
+    "submit": "Goge har abada",
+    "done": "An goge asusunka."
+  },
+  "catalog": {
+    "title": "Koyo",
+    "all": "Duka",
+    "lessons_one": "Darasi {{count}}",
+    "lessons_other": "Darussa {{count}}",
+    "certifying": "Da takardar shaida",
+    "progress": "An kammala {{percent}}%",
+    "completed": "An kammala",
+    "empty": "Babu darussa a wannan fanni tukuna.",
+    "levels": {
+      "beginner": "Mai farawa",
+      "intermediate": "Matsakaici",
+      "advanced": "Ci gaba"
+    }
+  },
+  "module": {
+    "introVideo": "Bidiyon gabatarwa",
+    "playVideo": "Kunna bidiyon gabatarwa",
+    "videoData": "Yana amfani da data. Yana kunnuwa ne kawai idan ka taɓa.",
+    "videoLang": "Bidiyo da {{language}}",
+    "path": "Hanyar karatunka",
+    "lessonNumber": "Darasi na {{number}}",
+    "start": "Fara",
+    "certificate": "Takardar shaida",
+    "certificateHint": "Kammala dukkan darussa don samun ta.",
+    "certificateReady": "An kammala dukkan darussa!",
+    "notFound": "Ba a sami wannan darasin ba.",
+    "state": {
+      "done": "an kammala",
+      "current": "ana yi",
+      "available": "akwai",
+      "locked": "a kulle"
+    }
+  },
+  "lessonSheet": {
+    "xp": "+{{count}} XP",
+    "done": "An kammala darasi",
+    "start": "Fara",
+    "replay": "Sake duba darasin",
+    "locked": "Kammala darasin da ya gabata don buɗe wannan."
+  },
+  "lesson": {
+    "close": "Fita daga darasin",
+    "progress": "Mataki {{current}} cikin {{total}}",
+    "start": "Fara",
+    "continue": "Ci gaba",
+    "check": "Duba",
+    "retry": "Sake gwadawa",
+    "reveal": "Nuna mafita",
+    "finish": "Kammala darasin",
+    "done": "Na gama",
+    "quitTitle": "Za ka fita daga darasin?",
+    "quitBody": "Ci gabanka a wannan darasin zai ɓace.",
+    "quitConfirm": "Fita",
+    "quitCancel": "Zauna",
+    "lessonNumber": "Darasi na {{number}}",
+    "minutes": "≈ minti {{count}}",
+    "objective": "Manufa",
+    "video": "Bidiyon darasin",
+    "challenge": "Ƙalubalen",
+    "thinkFirst": "Yaya za ka magance shi? Ka yi tunani, sannan ka nuna mafita.",
+    "solution": "Mafita",
+    "impact": "Sakamakon",
+    "practice": "Lokacinka ne",
+    "observation": "Abin da za ka lura da shi",
+    "reflection": "Tunani",
+    "reflectionPlaceholder": "Rubuta amsarka…",
+    "reflectionPrivate": "Amsarka tana zama a wayarka kawai.",
+    "recap": "Abubuwan tunawa",
+    "question": "Tambaya",
+    "againBadge": "Tambayar bita",
+    "correctTitle": "Madalla!",
+    "incorrectTitle": "Ba daidai ba tukuna",
+    "revealedTitle": "Amsar da ta dace: {{answer}}",
+    "revealedLater": "Za ka sake ganin wannan tambayar a ƙarshen darasin.",
+    "xpGain": "+{{count}} XP",
+    "bodyLangNotice": "Babu wannan darasin da {{language}} tukuna, don haka yana bayyana da Faransanci.",
+    "loading": "Ana loda darasin",
+    "errorTitle": "Ba a iya loda darasin ba",
+    "errorBody": "Duba haɗin intanet ɗinka, sannan ka sake gwadawa.",
+    "offlineTitle": "Babu darasin ba tare da intanet ba",
+    "offlineBody": "Buɗe wannan darasin sau ɗaya da intanet, zai ci gaba da kasancewa a wayarka.",
+    "emptyTitle": "Wannan darasin zai zo kan waya nan ba da jimawa ba",
+    "emptyBody": "Abubuwan cikinsa ba su shiga manhajar ba tukuna. Za ka iya bin sa a course.karatou.academy."
+  },
+  "lessonComplete": {
+    "title": "An kammala darasin!",
+    "xpTotal": "+{{count}} XP",
+    "xpLesson": "Kammala darasi",
+    "xpSteps": "Atisaye",
+    "xpPerfect": "Ba kuskure",
+    "replay": "An riga an yi darasin: kashi 25 na kari.",
+    "estimate": "Ƙiyasi ne: jimillar hukuma za ta zo bayan an daidaita.",
+    "accuracy": "Daidaito",
+    "duration": "Lokaci",
+    "minutes": "minti {{count}}",
+    "synced": "An adana ci gabanka",
+    "pending": "Ana jiran daidaitawa",
+    "continue": "Ci gaba"
   }
 }
