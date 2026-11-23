@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useAuth } from '@/features/auth/store';
+import { usePendingItems } from '@/features/lesson/queue';
 import { isLanguage } from '@/i18n';
 import { supabase } from '@/lib/supabase';
 
@@ -42,10 +44,14 @@ export function useCatalog() {
   });
 }
 
-/** Leçons terminées par l'apprenant (sur le web comme sur le mobile). */
+/**
+ * Leçons terminées par l'apprenant (sur le web comme sur le mobile), plus
+ * celles finies sur le mobile qui attendent encore la synchronisation.
+ */
 export function useProgress() {
   const userId = useAuth((s) => s.session?.user.id);
-  return useQuery({
+  const pending = usePendingItems();
+  const query = useQuery({
     queryKey: ['progress', userId],
     enabled: Boolean(userId),
     staleTime: 60 * 1000,
@@ -63,6 +69,28 @@ export function useProgress() {
       }));
     },
   });
+  const data = useMemo(
+    () => mergePending(query.data, pending, userId),
+    [query.data, pending, userId],
+  );
+  return { ...query, data };
+}
+
+/** Ajoute les leçons en attente d'envoi qui ne sont pas encore dans la base. */
+export function mergePending(
+  rows: ProgressRow[] | undefined,
+  pending: { userId: string; payload: { moduleSlug: string; courseId: string; completedAt: string } }[],
+  userId: string | undefined,
+): ProgressRow[] | undefined {
+  const mine = pending.filter((item) => item.userId === userId);
+  if (mine.length === 0) return rows;
+  const merged = [...(rows ?? [])];
+  for (const { payload } of mine) {
+    if (!merged.some((r) => r.moduleSlug === payload.moduleSlug && r.courseId === payload.courseId)) {
+      merged.push({ moduleSlug: payload.moduleSlug, courseId: payload.courseId, completedAt: payload.completedAt });
+    }
+  }
+  return merged;
 }
 
 /**

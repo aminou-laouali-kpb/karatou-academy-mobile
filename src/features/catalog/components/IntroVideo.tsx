@@ -19,10 +19,13 @@ export function IntroVideo({
   url,
   videoLang,
   userLang,
+  label,
 }: {
   url: string;
   videoLang: Language;
   userLang: Language;
+  /** Titre au-dessus du lecteur ; « Vidéo d'introduction » par défaut. */
+  label?: string;
 }) {
   const { t } = useTranslation();
   const { width } = useWindowDimensions();
@@ -35,7 +38,7 @@ export function IntroVideo({
   return (
     <View className="gap-2">
       <View className="flex-row items-center justify-between">
-        <Text variant="eyebrow">{t('module.introVideo')}</Text>
+        <Text variant="eyebrow">{label ?? t('module.introVideo')}</Text>
         {videoLang !== userLang && (
           <View className="rounded-full bg-gray-100 px-2 py-0.5">
             <Text variant="meta">{t('module.videoLang', { language: t(`language.${videoLang}`) })}</Text>

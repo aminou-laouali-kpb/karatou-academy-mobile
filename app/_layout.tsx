@@ -13,6 +13,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { startAuthListener, useAuth } from '@/features/auth/store';
+import { startOfflineQueue } from '@/features/lesson/queue';
 import { useSyncPreferredLanguage } from '@/features/profile/api';
 import { posthog } from '@/lib/analytics';
 import '@/lib/network';
@@ -23,6 +24,7 @@ import { appFonts } from '@/theme/fonts';
 initSentry();
 void SplashScreen.preventAutoHideAsync();
 startAuthListener();
+startOfflineQueue();
 
 function Analytics({ children }: { children: ReactNode }) {
   if (!posthog) return <>{children}</>;
@@ -52,12 +54,17 @@ function RootStack() {
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="settings" />
         <Stack.Screen name="module/[slug]" />
-        <Stack.Screen name="lesson/[moduleSlug]/[courseId]" options={{ presentation: 'fullScreenModal' }} />
+        <Stack.Screen
+          name="lesson/[moduleSlug]/[courseId]"
+          options={{ presentation: 'fullScreenModal', gestureEnabled: false }}
+        />
+        <Stack.Screen name="lesson-complete" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
       </Stack.Protected>
       <Stack.Screen name="index" />
       <Stack.Screen name="auth/callback" />
       <Stack.Screen name="reset-password" />
       <Stack.Screen name="dev/ui" />
+      <Stack.Screen name="dev/lesson" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
     </Stack>
   );
 }

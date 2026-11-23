@@ -171,3 +171,21 @@ describe('dégradés et vidéo', () => {
     expect(videoLanguage(null, 'fr')).toBeNull();
   });
 });
+
+describe('mergePending', () => {
+  const { mergePending } = jest.requireActual<typeof import('../api')>('../api');
+  const row = { moduleSlug: 'm', courseId: 'c1', completedAt: '2026-01-01' };
+  const pending = (courseId: string, userId = 'u1') => ({
+    userId,
+    payload: { moduleSlug: 'm', courseId, completedAt: '2026-11-23' },
+  });
+
+  it('ajoute les leçons finies hors ligne, sans doublon ni autre compte', () => {
+    expect(mergePending([row], [], 'u1')).toEqual([row]);
+    expect(mergePending([row], [pending('c1'), pending('c2'), pending('c3', 'u2')], 'u1')).toEqual([
+      row,
+      { moduleSlug: 'm', courseId: 'c2', completedAt: '2026-11-23' },
+    ]);
+    expect(mergePending(undefined, [pending('c2')], 'u1')).toHaveLength(1);
+  });
+});
