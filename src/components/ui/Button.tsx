@@ -9,10 +9,7 @@ import { Text } from './Text';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'gold' | 'ghost' | 'ghostInverse';
 
-const variants: Record<
-  ButtonVariant,
-  { face: string; edge: string; text: string; spinner: string }
-> = {
+const variants: Record<ButtonVariant, { face: string; edge: string; text: string; spinner: string }> = {
   primary: { face: 'bg-blue-500', edge: 'border-blue-700', text: 'text-white', spinner: colors.white },
   secondary: {
     face: 'bg-white border-2 border-gray-200',
@@ -21,9 +18,19 @@ const variants: Record<
     spinner: colors.blue[500],
   },
   gold: { face: 'bg-gold-400', edge: 'border-gold-700', text: 'text-blue-900', spinner: colors.blue[900] },
-  ghost: { face: 'bg-transparent', edge: 'border-transparent', text: 'text-blue-500', spinner: colors.blue[500] },
+  ghost: {
+    face: 'bg-transparent',
+    edge: 'border-transparent',
+    text: 'text-blue-500',
+    spinner: colors.blue[500],
+  },
   /** Bouton texte sur fond sombre (dégradé « dark ») : blanc pour garder le contraste AA. */
-  ghostInverse: { face: 'bg-transparent', edge: 'border-transparent', text: 'text-white', spinner: colors.white },
+  ghostInverse: {
+    face: 'bg-transparent',
+    edge: 'border-transparent',
+    text: 'text-white',
+    spinner: colors.white,
+  },
 };
 
 export type ButtonProps = Omit<PressableProps, 'children'> & {
@@ -84,7 +91,10 @@ export function Button({
           >
             <View
               className={cn(
-                'h-[52px] flex-row items-center justify-center gap-2 rounded-lg px-6',
+                // Les boutons texte (ghost) peuvent passer sur 2 lignes : leurs libellés
+                // sont des phrases (« Pas encore de compte ? … »), parfois longues en hausa.
+                isGhost ? 'min-h-[52px] py-2' : 'h-[52px]',
+                'flex-row items-center justify-center gap-2 rounded-lg px-6',
                 v.face,
                 variant === 'ghost' && down && 'bg-blue-50',
                 variant === 'ghostInverse' && down && 'bg-white/10',
@@ -95,7 +105,11 @@ export function Button({
               ) : (
                 <>
                   {icon}
-                  <Text variant="h3" className={cn('font-body-bold', v.text)} numberOfLines={1}>
+                  <Text
+                    variant="h3"
+                    className={cn('font-body-bold', isGhost && 'text-center', v.text)}
+                    numberOfLines={isGhost ? 2 : 1}
+                  >
                     {label}
                   </Text>
                 </>

@@ -1,9 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 
+import i18n from '@/i18n';
+
 import { Avatar, initialsOf } from '../Avatar';
 import { Button } from '../Button';
 import { Chip } from '../Chip';
 import { ProgressBar, SegmentedProgressBar } from '../ProgressBar';
+import { Text } from '../Text';
 
 describe('Button', () => {
   it('appelle onPress et expose un rôle accessible', async () => {
@@ -56,5 +59,23 @@ describe('Avatar', () => {
   it('affiche les initiales sans image', async () => {
     await render(<Avatar name="Aïcha Moussa" />);
     expect(screen.getByText('AM')).toBeTruthy();
+  });
+});
+
+describe('Text en hausa', () => {
+  afterEach(() => i18n.changeLanguage('fr'));
+
+  it('remplace Literata par Inter gras pour les titres', async () => {
+    await i18n.changeLanguage('ha');
+    await render(<Text variant="h1">Ƙirƙiri asusunka</Text>);
+    // NativeWind ne calcule pas les styles sous Jest : on vérifie les classes.
+    const className: string = screen.getByText('Ƙirƙiri asusunka').props.className;
+    expect(className).toContain('font-body-bold');
+    expect(className).not.toContain('font-heading');
+  });
+
+  it('garde Literata en français', async () => {
+    await render(<Text variant="h1">Crée ton compte</Text>);
+    expect(screen.getByText('Crée ton compte').props.className).toContain('font-heading');
   });
 });

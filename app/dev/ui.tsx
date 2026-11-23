@@ -6,16 +6,7 @@ import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
-import {
-  Avatar,
-  Button,
-  Card,
-  Chip,
-  ProgressBar,
-  SegmentedProgressBar,
-  Sheet,
-  Text,
-} from '@/components/ui';
+import { Avatar, Button, Card, Chip, ProgressBar, SegmentedProgressBar, Sheet, Text } from '@/components/ui';
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -35,7 +26,9 @@ export default function UiGallery() {
 
   return (
     <SafeAreaView className="flex-1 bg-gray-50" edges={['bottom']}>
-      <Stack.Screen options={{ headerShown: true, title: t('dev.title'), headerBackButtonDisplayMode: 'minimal' }} />
+      <Stack.Screen
+        options={{ headerShown: true, title: t('dev.title'), headerBackButtonDisplayMode: 'minimal' }}
+      />
       <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerClassName="gap-8 p-5 pb-16">
         <LanguageSwitcher />
 
@@ -70,7 +63,11 @@ export default function UiGallery() {
           <View className="flex-row flex-wrap gap-2">
             <Chip label={t('dev.chipAll')} selected={chip === 'all'} onPress={() => setChip('all')} />
             <Chip label={t('dev.chipAi')} selected={chip === 'ai'} onPress={() => setChip('ai')} />
-            <Chip label={t('dev.chipDigital')} selected={chip === 'digital'} onPress={() => setChip('digital')} />
+            <Chip
+              label={t('dev.chipDigital')}
+              selected={chip === 'digital'}
+              onPress={() => setChip('digital')}
+            />
           </View>
         </Section>
 
@@ -98,7 +95,11 @@ export default function UiGallery() {
         </Section>
 
         <Section title={t('dev.sheet')}>
-          <Button label={t('dev.openSheet')} variant="secondary" onPress={() => sheetRef.current?.present()} />
+          <Button
+            label={t('dev.openSheet')}
+            variant="secondary"
+            onPress={() => sheetRef.current?.present()}
+          />
         </Section>
       </ScrollView>
 
