@@ -1,0 +1,55 @@
+{
+  "common": {
+    "continue": "Ci gaba",
+    "check": "Duba",
+    "retry": "Sake gwadawa",
+    "cancel": "Soke",
+    "close": "Rufe",
+    "loading": "Ana lodawa…",
+    "error": "An sami matsala.",
+    "offline": "Ba ka da intanet.",
+    "empty": "Babu abin nunawa yanzu."
+  },
+  "language": {
+    "label": "Harshe",
+    "fr": "Français",
+    "en": "English",
+    "ha": "Hausa"
+  },
+  "welcome": {
+    "title": "Karatou Academy",
+    "promise": "Minti 10 a kowace rana don ƙware a fasahar AI da ta zamani, da harshenka, ko ba intanet.",
+    "start": "Fara",
+    "haveAccount": "Ina da asusu tuni",
+    "devGallery": "Tarin abubuwan haɗi (dev)"
+  },
+  "gamification": {
+    "xp": "XP {{count}}",
+    "streakDays_one": "Kwana {{count}}",
+    "streakDays_other": "Kwanaki {{count}}"
+  },
+  "dev": {
+    "title": "Kayan UI",
+    "buttons": "Maɓallai",
+    "primary": "Babba",
+    "secondary": "Na biyu",
+    "gold": "Lada",
+    "ghost": "Mara haske",
+    "disabled": "An kashe",
+    "cards": "Katuna",
+    "cardTitle": "Tushen AI",
+    "cardBody": "Darussa 8 · minti 45",
+    "chips": "Alamomi",
+    "chipAll": "Duka",
+    "chipAi": "AI",
+    "chipDigital": "Fasahar zamani",
+    "progress": "Sandunan ci gaba",
+    "avatars": "Hotunan bayani",
+    "sheet": "Takarda",
+    "openSheet": "Buɗe takardar",
+    "sheetTitle": "Daidai ne!",
+    "sheetBody": "Samfurin AI yana koyo daga misalai.",
+    "typography": "Rubutu",
+    "sampleText": "Koyo ta hanyar aikatawa, mataki ɗaya bayan ɗaya."
+  }
+}
