@@ -24,21 +24,29 @@ import { lessonKey, useLessonStore } from '@/features/lesson/store';
 import type { Language } from '@/i18n';
 import {
   advance,
+  answerLabel,
+  XP,
   check,
   currentStep,
+  initialDraft,
   isFinished,
+  isGraded,
   isRequeued,
+  keepsDraftOnRetry,
   lessonToSteps,
   retry,
   startSession,
+  toAnswer,
+  type Draft,
   type LessonContent,
   type Session,
+  type Step,
 } from '@/lesson-engine';
 import { useIsOffline } from '@/lib/network';
 import { colors } from '@/theme/tokens';
 
 import { FeedbackPanel } from './FeedbackPanel';
-import { RENDERABLE, StepRenderer, type Draft } from './StepRenderer';
+import { RENDERABLE, StepRenderer } from './StepRenderer';
 
 /** Nombre d'étapes au-delà duquel la barre segmentée devient continue. */
 const MAX_SEGMENTS = 12;
@@ -49,6 +57,7 @@ export function Player({
   lang,
   body,
   bodyLang,
+  steps: authoredSteps,
   preview = false,
   startAt = 0,
 }: {
@@ -57,6 +66,13 @@ export function Player({
   lang: Language;
   body: LessonContent;
   bodyLang: Language;
+  /**
+   * Étapes rédigées (fiche §6.1, priorité 1). Aujourd'hui seule la galerie dev
+   * les fournit. TODO(interactive_steps) : quand la colonne
+   * `karatou_courses.interactive_steps` existera (migration dans le repo web),
+   * la lire dans `useLessonBody` et la passer ici ; `lessonToSteps` reste le repli.
+   */
+  steps?: Step[];
   /** Aperçu (écran dev) : rien n'est envoyé au serveur. */
   preview?: boolean;
   /** Écran dev : démarre directement à cette étape. */
@@ -79,9 +95,9 @@ export function Player({
   // Reprend la leçon en cours (appel entrant, app tuée) ou en démarre une nouvelle.
   useEffect(() => {
     if (session && !isFinished(session)) return;
-    const steps = lessonToSteps(body, { lang: bodyLang, duration: lesson?.duration, offline }).filter(
-      (step) => RENDERABLE.has(step.type),
-    );
+    const steps = (
+      authoredSteps ?? lessonToSteps(body, { lang: bodyLang, duration: lesson?.duration, offline })
+    ).filter((step) => RENDERABLE.has(step.type));
     const fresh = startSession(steps, Date.now());
     setActive({ key, session: { ...fresh, index: Math.min(startAt, Math.max(0, steps.length - 1)) } });
     // Démarrage unique par leçon : la connexion ou le catalogue qui changent ensuite ne relancent rien.
@@ -203,7 +219,7 @@ function StepView({
   onFinish: (session: Session) => void;
 }) {
   const { t } = useTranslation();
-  const [draft, setDraft] = useState<Draft>({});
+  const [draft, setDraft] = useState<Draft>(() => initialDraft(currentStep(session)!));
   const { bottom } = useSafeAreaInsets();
   const reflection = useLessonStore((s) => s.reflections[reflectionKey] ?? '');
   const setReflection = useLessonStore((s) => s.setReflection);
@@ -217,58 +233,60 @@ function StepView({
   };
 
   let footer;
-  if (step.type === 'mcq' && phase !== 'answering') {
+  if (isGraded(step) && phase !== 'answering') {
     footer = (
       <FeedbackPanel
         phase={phase}
-        explanation={step.explanation}
-        // La bonne option est déjà surlignée en vert : la lettre suffit.
-        answerLabel={step.answer.toUpperCase()}
-        xp={isRequeued(step) ? 0 : session.misses === 0 ? 2 : 1}
+        explanation={'explanation' in step ? step.explanation : ''}
+        // Réponse courte dans le titre ; sinon (ordre, association) elle est montrée dans l'étape.
+        answerLabel={answerLabel(step, { true: t('lesson.true'), false: t('lesson.false') })}
+        xp={isRequeued(step) ? 0 : session.misses === 0 ? XP.firstTry : XP.afterRetry}
         again={isRequeued(step)}
         bottomInset={bottom}
         onPress={() => {
           if (phase === 'incorrect') {
-            setDraft({});
+            // Seconde chance : on corrige un exercice manipulé, on refait un choix simple.
+            setDraft((current) => (keepsDraftOnRetry(step) ? current : initialDraft(step)));
             onUpdate(retry(session));
           } else next();
         }}
       />
     );
   } else {
-    const cta =
-      step.type === 'mcq'
+    const answer = isGraded(step) ? toAnswer(step, draft) : null;
+    const cta = isGraded(step)
+      ? {
+          label: t('lesson.check'),
+          disabled: answer === null,
+          onPress: () => {
+            if (!answer) return;
+            const checked = check(session, answer);
+            void Haptics.notificationAsync(
+              checked.phase === 'correct'
+                ? Haptics.NotificationFeedbackType.Success
+                : Haptics.NotificationFeedbackType.Error,
+            );
+            onUpdate(checked);
+          },
+        }
+      : step.type === 'predict_reveal' && !draft.revealed
         ? {
-            label: t('lesson.check'),
-            disabled: !draft.choice,
-            onPress: () => {
-              const checked = check(session, { type: 'mcq', key: draft.choice! });
-              void Haptics.notificationAsync(
-                checked.phase === 'correct'
-                  ? Haptics.NotificationFeedbackType.Success
-                  : Haptics.NotificationFeedbackType.Error,
-              );
-              onUpdate(checked);
-            },
+            label: t('lesson.reveal'),
+            disabled: false,
+            onPress: () => setDraft({ ...draft, revealed: true }),
           }
-        : step.type === 'predict_reveal' && !draft.revealed
-          ? {
-              label: t('lesson.reveal'),
-              disabled: false,
-              onPress: () => setDraft({ ...draft, revealed: true }),
-            }
-          : {
-              label:
-                step.type === 'intro'
-                  ? t('lesson.start')
-                  : step.type === 'checklist'
-                    ? t('lesson.done')
-                    : session.index === session.steps.length - 1
-                      ? t('lesson.finish')
-                      : t('lesson.continue'),
-              disabled: false,
-              onPress: next,
-            };
+        : {
+            label:
+              step.type === 'intro'
+                ? t('lesson.start')
+                : step.type === 'checklist'
+                  ? t('lesson.done')
+                  : session.index === session.steps.length - 1
+                    ? t('lesson.finish')
+                    : t('lesson.continue'),
+            disabled: false,
+            onPress: next,
+          };
     footer = (
       <View className="px-5 pt-3" style={{ paddingBottom: bottom + 8 }}>
         <Button label={cta.label} disabled={cta.disabled} onPress={cta.onPress} />
