@@ -4,22 +4,24 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 import { Button, Sheet, Text } from '@/components/ui';
+import { DownloadButton } from '@/features/downloads/components/DownloadButton';
 import { isLanguage } from '@/i18n';
 
 import { useLessonVideoLanguage } from '../api';
 import type { PathNode } from '../path';
+import type { Module } from '../types';
 
 /** XP de base d'une leçon terminée la 1ʳᵉ fois (fiche §7.1), accordée par le serveur. */
 export const LESSON_BASE_XP = 20;
 
 /**
- * E07 Feuille leçon : titre, durée, XP à gagner, langue de la vidéo, « Commencer ».
- * Le téléchargement hors ligne arrive au sprint S8.
+ * E07 Feuille leçon : titre, durée, XP à gagner, langue de la vidéo, « Commencer »,
+ * et « Télécharger le module » pour le mode avion (E17).
  */
 export const LessonSheet = forwardRef<
   BottomSheetModal,
-  { node: PathNode | null; onStart: (node: PathNode) => void }
->(function LessonSheet({ node, onStart }, ref) {
+  { node: PathNode | null; module?: Module; onStart: (node: PathNode) => void }
+>(function LessonSheet({ node, module, onStart }, ref) {
   const { t, i18n } = useTranslation();
   const lang = isLanguage(i18n.language) ? i18n.language : 'fr';
   const { data: videoLang } = useLessonVideoLanguage(node && node.state !== 'locked' ? node.lesson.id : null);
@@ -62,6 +64,7 @@ export const LessonSheet = forwardRef<
               onPress={() => onStart(node)}
             />
           )}
+          {module ? <DownloadButton module={module} /> : null}
         </>
       )}
     </Sheet>
