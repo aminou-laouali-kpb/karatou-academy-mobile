@@ -200,7 +200,7 @@ describe('interactions', () => {
   it('match : sélectionne, appaire, délie, réattribue', () => {
     let d = tapLeft({}, 0);
     expect(d.selectedLeft).toBe(0);
-    expect(tapLeft(d, 0).selectedLeft).toBeUndefined();
+    expect(tapLeft(d, 0).selectedLeft).toBe(0);
     d = tapRight(d, 2);
     expect(d.links).toEqual({ 0: 2 });
     expect(d.selectedLeft).toBeUndefined();
@@ -216,6 +216,19 @@ describe('interactions', () => {
     // Toucher une définition liée sans sélection la délie.
     d = tapRight({ links: { 0: 1 } }, 1);
     expect(d.links).toEqual({});
+  });
+
+  it('match : avec le nombre de paires, sélectionne le terme libre suivant', () => {
+    let d = tapRight(tapLeft({}, 0), 3, 4);
+    expect(d.selectedLeft).toBe(1);
+    d = tapRight(d, 0, 4);
+    expect(d.selectedLeft).toBe(2);
+    // On boucle au début : le terme 3 est appairé, il reste le terme 2… puis plus rien.
+    d = tapRight(tapLeft(d, 3), 1, 4);
+    expect(d.selectedLeft).toBe(2);
+    d = tapRight(d, 2, 4);
+    expect(d.links).toEqual({ 0: 3, 1: 0, 3: 1, 2: 2 });
+    expect(d.selectedLeft).toBeUndefined();
   });
 });
 

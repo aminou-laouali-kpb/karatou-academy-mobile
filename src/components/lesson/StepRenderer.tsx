@@ -163,7 +163,7 @@ export function StepRenderer({
           draft={draft}
           again={isRequeued(step)}
           onTapLeft={(left) => setDraft(tapLeft(draft, left))}
-          onTapRight={(right) => setDraft(tapRight(draft, right))}
+          onTapRight={(right) => setDraft(tapRight(draft, right, step.pairs.length))}
         />
       );
     case 'reflection':
