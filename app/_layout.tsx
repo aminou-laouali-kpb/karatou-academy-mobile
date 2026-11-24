@@ -58,12 +58,16 @@ function RootStack() {
           name="lesson/[moduleSlug]/[courseId]"
           options={{ presentation: 'fullScreenModal', gestureEnabled: false }}
         />
-        <Stack.Screen name="lesson-complete" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
+        <Stack.Screen
+          name="lesson-complete"
+          options={{ presentation: 'fullScreenModal', gestureEnabled: false }}
+        />
       </Stack.Protected>
       <Stack.Screen name="index" />
       <Stack.Screen name="auth/callback" />
       <Stack.Screen name="reset-password" />
       <Stack.Screen name="dev/ui" />
+      <Stack.Screen name="dev/steps" />
       <Stack.Screen name="dev/lesson" options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
     </Stack>
   );

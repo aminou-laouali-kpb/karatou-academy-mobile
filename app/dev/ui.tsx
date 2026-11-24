@@ -1,5 +1,5 @@
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { Stack } from 'expo-router';
+import { router, Stack } from 'expo-router';
 import { useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, View } from 'react-native';
@@ -31,6 +31,15 @@ export default function UiGallery() {
       />
       <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerClassName="gap-8 p-5 pb-16">
         <LanguageSwitcher />
+
+        <Section title={t('dev.screens')}>
+          <Button label={t('dev.openSteps')} variant="secondary" onPress={() => router.push('/dev/steps')} />
+          <Button
+            label={t('dev.openLesson')}
+            variant="secondary"
+            onPress={() => router.push('/dev/lesson')}
+          />
+        </Section>
 
         <Section title={t('dev.typography')}>
           <Text variant="display">{t('welcome.title')}</Text>
