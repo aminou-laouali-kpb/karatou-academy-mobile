@@ -173,7 +173,7 @@ export function moveItem(draft: Draft, index: number, delta: -1 | 1): Draft {
 }
 
 /**
- * match : touche un terme. Le sélectionne (ou le désélectionne) ; un terme
+ * match : touche un terme. Le sélectionne ; un terme
  * déjà appairé est délié pour pouvoir être refait.
  */
 export function tapLeft(draft: Draft, left: number): Draft {
@@ -182,21 +182,35 @@ export function tapLeft(draft: Draft, left: number): Draft {
     delete links[left];
     return { ...draft, links, selectedLeft: left };
   }
-  return { ...draft, selectedLeft: draft.selectedLeft === left ? undefined : left };
+  // Pas de bascule : le terme suivant est déjà sélectionné d'office, le retoucher ne doit pas le désélectionner.
+  return { ...draft, selectedLeft: left };
 }
 
 /**
  * match : touche une définition. Avec un terme sélectionné, les appaire (en
  * retirant l'ancien lien de cette définition) ; sinon, délie la définition.
+ * Avec `count` (nombre de paires), le terme suivant encore libre est
+ * sélectionné d'office : sur petit écran, l'apprenant n'a plus à remonter
+ * jusqu'aux termes entre deux paires.
  */
-export function tapRight(draft: Draft, right: number): Draft {
+export function tapRight(draft: Draft, right: number, count?: number): Draft {
   const links = { ...(draft.links ?? {}) };
   for (const [left, linked] of Object.entries(links)) {
     if (linked === right) delete links[Number(left)];
   }
   if (draft.selectedLeft === undefined) return { ...draft, links };
   links[draft.selectedLeft] = right;
-  return { ...draft, links, selectedLeft: undefined };
+  return { ...draft, links, selectedLeft: nextFreeLeft(links, draft.selectedLeft, count) };
+}
+
+/** Prochain terme sans définition après `from` (en bouclant), ou `undefined`. */
+function nextFreeLeft(links: Record<number, number>, from: number, count?: number): number | undefined {
+  if (count === undefined) return undefined;
+  for (let step = 1; step < count; step++) {
+    const left = (from + step) % count;
+    if (links[left] === undefined) return left;
+  }
+  return undefined;
 }
 
 /** match : terme lié à une définition, s'il y en a un. */

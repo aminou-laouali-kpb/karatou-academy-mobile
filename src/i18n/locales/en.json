@@ -369,7 +369,8 @@
     "termLinked": "{{term}}, pair {{number}}. Tap to undo.",
     "definitionLinked": "{{definition}}, matched with {{term}}",
     "correctAnswer": "The right answer",
-    "revealedShownTitle": "Here is the right answer"
+    "revealedShownTitle": "Here is the right answer",
+    "definitionsFor": "Definitions · for “{{term}}”"
   },
   "lessonComplete": {
     "title": "Lesson complete!",
