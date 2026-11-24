@@ -1,0 +1,34 @@
+# Premier lancement : bienvenue, six questions, plan, puis l'inscription.
+# Efface les données de l'app (et donc la session) : à lancer en dernier.
+appId: academy.karatou.app
+name: onboarding
+---
+- launchApp:
+    clearState: true
+    clearKeychain: true
+- tapOn:
+    id: "welcome-start"
+# Langue : français.
+- tapOn:
+    id: "option-fr"
+- tapOn:
+    id: "question-continue"
+# Objectif, niveau, moment, objectif quotidien : la première option.
+- repeat:
+    times: 4
+    commands:
+      - tapOn:
+          id: "option-.*"
+          index: 0
+      - tapOn:
+          id: "question-continue"
+# Rappel : aucun, pour ne pas déclencher la demande de notifications.
+- tapOn:
+    id: "option-none"
+- tapOn:
+    id: "question-continue"
+- tapOn:
+    id: "plan-cta"
+- assertVisible:
+    id: "sign-up-submit"
+- takeScreenshot: e2e-artifacts/onboarding-sign-up

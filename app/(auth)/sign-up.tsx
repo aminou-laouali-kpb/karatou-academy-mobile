@@ -92,7 +92,7 @@ export default function SignUpScreen() {
 
       <FormError error={error} />
       <View className="gap-3">
-        <Button label={t('auth.signUp.submit')} loading={loading} onPress={() => void submit()} />
+        <Button testID="sign-up-submit" label={t('auth.signUp.submit')} loading={loading} onPress={() => void submit()} />
         <Text variant="meta" className="text-center">
           {t('auth.signUp.terms')}
         </Text>

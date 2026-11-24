@@ -1,0 +1,25 @@
+# Se connecte avec le compte de test si l'app est déconnectée.
+# Identifiants passés à Maestro, jamais écrits dans le dépôt :
+#   maestro test -e TEST_EMAIL=… -e TEST_PASSWORD=… .maestro/
+appId: academy.karatou.app
+---
+- runFlow:
+    when:
+      visible:
+        id: "welcome-sign-in"
+    commands:
+      - tapOn:
+          id: "welcome-sign-in"
+      - tapOn:
+          id: "sign-in-email"
+      - inputText: ${TEST_EMAIL}
+      - tapOn:
+          id: "sign-in-password"
+      - inputText: ${TEST_PASSWORD}
+      - hideKeyboard
+      - tapOn:
+          id: "sign-in-submit"
+      - extendedWaitUntil:
+          notVisible:
+            id: "sign-in-submit"
+          timeout: 20000

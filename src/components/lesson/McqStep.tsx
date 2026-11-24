@@ -49,6 +49,7 @@ export function McqStep({
           return (
             <Pressable
               key={option.key}
+              testID={`mcq-${option.key.toLowerCase()}`}
               accessibilityRole="radio"
               accessibilityState={{ checked: chosen, disabled: locked }}
               accessibilityLabel={`${option.key}. ${option.text}`}

@@ -1,0 +1,19 @@
+# Un quiz sous 70 % : l'app répond toujours A, et la leçon choisie n'a qu'une
+# bonne réponse A sur 5 (data-analysis/d6 : B C B A D). Elle doit être NON
+# terminée par le compte de test : l'échec ne la valide pas, le scénario
+# reste donc rejouable. Écran attendu : « Presque ! », sans XP.
+appId: academy.karatou.app
+name: quiz-failed
+env:
+  LESSON: data-analysis/d6
+---
+- launchApp
+- runFlow: subflows/sign-in.yaml
+- openLink: karatou://lesson/${LESSON}
+- runFlow: subflows/play-lesson.yaml
+- assertVisible:
+    id: "lesson-complete-failed"
+- assertNotVisible: ".*Total officiel.*"
+- takeScreenshot: e2e-artifacts/quiz-failed
+- tapOn:
+    id: "lesson-complete-continue"
