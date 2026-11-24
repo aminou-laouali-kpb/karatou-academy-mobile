@@ -77,6 +77,11 @@ export default function ProfileScreen() {
             label={t('profile.edit')}
             onPress={() => router.push('/settings/profile')}
           />
+          <Button
+            variant="secondary"
+            label={t('downloads.title')}
+            onPress={() => router.push('/downloads')}
+          />
           <Button variant="secondary" label={t('profile.signOut')} onPress={() => void signOut()} />
           <Button
             variant="ghost"

@@ -54,6 +54,7 @@ function RootStack() {
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="settings" />
         <Stack.Screen name="module/[slug]" />
+        <Stack.Screen name="downloads" />
         <Stack.Screen
           name="lesson/[moduleSlug]/[courseId]"
           options={{ presentation: 'fullScreenModal', gestureEnabled: false }}

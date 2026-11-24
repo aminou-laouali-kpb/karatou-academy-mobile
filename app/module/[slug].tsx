@@ -121,6 +121,7 @@ export default function ModuleScreen() {
       <LessonSheet
         ref={sheet}
         node={selected}
+        module={module}
         onStart={(node) => {
           sheet.current?.dismiss();
           router.push({
