@@ -45,19 +45,37 @@ export function FillBlankStep({
   const full = slots.every((slot) => slot !== null);
 
   // Texte découpé en mots pour un retour à la ligne naturel autour des trous.
-  const sentence = (fill: (index: number) => React.ReactNode) =>
-    parts.flatMap((part, i) =>
-      part.kind === 'blank'
-        ? [<View key={`b${i}`}>{fill(part.index)}</View>]
-        : part.text
-            .split(/(\s+)/)
-            .filter((word) => word.trim() !== '')
-            .map((word, j) => (
-              <Text key={`t${i}-${j}`} variant="body-lg">
-                {word}
-              </Text>
-            )),
+  // Ce qui touche un trou sans espace dans le modèle (« {{1}}. », « l'{{0}} »)
+  // reste collé au trou : pas d'espace avant le point, pas de retour à la ligne.
+  const sentence = (fill: (index: number) => React.ReactNode) => {
+    const words = parts.map((part) =>
+      part.kind === 'blank' ? [] : part.text.split(/\s+/).filter((word) => word !== ''),
     );
+    const glue = parts.map((part, i) => {
+      if (part.kind !== 'blank') return { before: undefined, after: undefined };
+      const prev = parts[i - 1];
+      const next = parts[i + 1];
+      return {
+        before: prev?.kind === 'text' && !/\s$/.test(prev.text) ? words[i - 1]?.pop() : undefined,
+        after: next?.kind === 'text' && !/^\s/.test(next.text) ? words[i + 1]?.shift() : undefined,
+      };
+    });
+    return parts.flatMap((part, i) =>
+      part.kind === 'blank'
+        ? [
+            <View key={`b${i}`} className="flex-row items-center">
+              {glue[i]?.before ? <Text variant="body-lg">{glue[i]?.before}</Text> : null}
+              {fill(part.index)}
+              {glue[i]?.after ? <Text variant="body-lg">{glue[i]?.after}</Text> : null}
+            </View>,
+          ]
+        : (words[i] ?? []).map((word, j) => (
+            <Text key={`t${i}-${j}`} variant="body-lg">
+              {word}
+            </Text>
+          )),
+    );
+  };
 
   return (
     <View className="gap-5 pt-4">

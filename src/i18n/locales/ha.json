@@ -369,7 +369,8 @@
     "termLinked": "{{term}}, haɗi na {{number}}. Taɓa don warwarewa.",
     "definitionLinked": "{{definition}}, an haɗa da {{term}}",
     "correctAnswer": "Amsar da ta dace",
-    "revealedShownTitle": "Ga amsar da ta dace"
+    "revealedShownTitle": "Ga amsar da ta dace",
+    "definitionsFor": "Ma'anoni · don « {{term}} »"
   },
   "lessonComplete": {
     "title": "An kammala darasin!",

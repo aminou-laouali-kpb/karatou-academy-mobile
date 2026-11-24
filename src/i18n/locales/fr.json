@@ -369,7 +369,8 @@
     "termLinked": "{{term}}, paire {{number}}. Touche pour défaire.",
     "definitionLinked": "{{definition}}, associée à {{term}}",
     "correctAnswer": "La bonne réponse",
-    "revealedShownTitle": "Voici la bonne réponse"
+    "revealedShownTitle": "Voici la bonne réponse",
+    "definitionsFor": "Définitions · pour « {{term}} »"
   },
   "lessonComplete": {
     "title": "Leçon terminée !",

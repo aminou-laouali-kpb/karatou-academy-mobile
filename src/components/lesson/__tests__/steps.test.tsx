@@ -189,7 +189,7 @@ describe('MatchStep', () => {
     await fireEvent.press(
       screen.getByRole('button', { name: 'Programme entraîné qui fait des prédictions' }),
     );
-    expect(onDraft).toHaveBeenLastCalledWith({ links: { 1: 1 }, selectedLeft: undefined });
+    expect(onDraft).toHaveBeenLastCalledWith({ links: { 1: 1 }, selectedLeft: 2 });
     expect(screen.getByRole('button', { name: 'Modèle, paire 2. Touche pour défaire.' })).toBeOnTheScreen();
     expect(
       screen.getByRole('button', {

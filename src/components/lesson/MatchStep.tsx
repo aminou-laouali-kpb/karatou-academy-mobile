@@ -101,7 +101,11 @@ export function MatchStep({
       </View>
 
       <View className="gap-2">
-        <Text variant="eyebrow">{t('lesson.definitions')}</Text>
+        <Text variant="eyebrow">
+          {draft.selectedLeft !== undefined && !locked
+            ? t('lesson.definitionsFor', { term: step.pairs[draft.selectedLeft]?.left ?? '' })
+            : t('lesson.definitions')}
+        </Text>
         <View className="gap-3">
           {rights.map((right) => {
             const left = leftOf(draft, right);
