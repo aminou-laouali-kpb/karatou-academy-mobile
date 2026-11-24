@@ -6,6 +6,24 @@ name: onboarding
 - launchApp:
     clearState: true
     clearKeychain: true
+# Build de dev seulement : sans données, le lanceur Expo a oublié le serveur
+# Metro. On rouvre le premier serveur trouvé, puis on ferme le menu de dev.
+- runFlow:
+    when:
+      visible: "Development Build"
+    commands:
+      - tapOn: "http://.*:8081"
+      - extendedWaitUntil:
+          visible: "Go home"
+          timeout: 30000
+          optional: true
+      - tapOn:
+          id: "xmark"
+          optional: true
+- extendedWaitUntil:
+    visible:
+      id: "welcome-start"
+    timeout: 60000
 - tapOn:
     id: "welcome-start"
 # Langue : français.
