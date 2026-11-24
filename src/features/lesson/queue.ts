@@ -9,7 +9,9 @@ import { Sentry } from '@/lib/sentry';
 import { storage } from '@/lib/storage';
 import { supabase } from '@/lib/supabase';
 
+import { parseAttemptResult } from './attemptResult';
 import { checkAttemptStatus } from './attemptStatus';
+import { useLessonStore } from './store';
 
 const KEY = 'offline-queue-v1';
 
@@ -41,6 +43,9 @@ async function send(item: QueueItem) {
   });
   if (error) throw classifyStatus(status, error);
   checkAttemptStatus((data as { lesson_status?: string } | null)?.lesson_status);
+  // L'écran de fin remplace son estimation par ces chiffres officiels.
+  const result = parseAttemptResult(data);
+  if (result) useLessonStore.getState().setLastResult(item.id, result);
   await Promise.all([
     queryClient.invalidateQueries({ queryKey: ['progress', item.userId] }),
     queryClient.invalidateQueries({ queryKey: ['learner-home', item.userId] }),
