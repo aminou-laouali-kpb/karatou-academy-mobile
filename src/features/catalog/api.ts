@@ -69,25 +69,32 @@ export function useProgress() {
       }));
     },
   });
-  const data = useMemo(
-    () => mergePending(query.data, pending, userId),
-    [query.data, pending, userId],
-  );
+  const data = useMemo(() => mergePending(query.data, pending, userId), [query.data, pending, userId]);
   return { ...query, data };
 }
 
-/** Ajoute les leçons en attente d'envoi qui ne sont pas encore dans la base. */
+/**
+ * Ajoute les leçons en attente d'envoi qui ne sont pas encore dans la base,
+ * sauf celles dont le quiz ne sera pas validé (moins de 70 %).
+ */
 export function mergePending(
   rows: ProgressRow[] | undefined,
-  pending: { userId: string; payload: { moduleSlug: string; courseId: string; completedAt: string } }[],
+  pending: {
+    userId: string;
+    payload: { moduleSlug: string; courseId: string; completedAt: string; quizPassed?: boolean };
+  }[],
   userId: string | undefined,
 ): ProgressRow[] | undefined {
-  const mine = pending.filter((item) => item.userId === userId);
+  const mine = pending.filter((item) => item.userId === userId && item.payload.quizPassed !== false);
   if (mine.length === 0) return rows;
   const merged = [...(rows ?? [])];
   for (const { payload } of mine) {
     if (!merged.some((r) => r.moduleSlug === payload.moduleSlug && r.courseId === payload.courseId)) {
-      merged.push({ moduleSlug: payload.moduleSlug, courseId: payload.courseId, completedAt: payload.completedAt });
+      merged.push({
+        moduleSlug: payload.moduleSlug,
+        courseId: payload.courseId,
+        completedAt: payload.completedAt,
+      });
     }
   }
   return merged;

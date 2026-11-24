@@ -122,3 +122,18 @@ describe('fournisseurs activés', () => {
     expect(parseEnabledProviders(null)).toEqual({ google: false, apple: false });
   });
 });
+
+describe('deleteErrorKey', () => {
+  const { deleteErrorKey } = jest.requireActual<typeof import('../authErrors')>('../authErrors');
+  const http = (status: number) => ({
+    message: 'Edge Function returned a non-2xx status code',
+    context: { status },
+  });
+
+  it('traduit les refus de la fonction delete-account', () => {
+    expect(deleteErrorKey(http(403))).toBe('adminAccount');
+    expect(deleteErrorKey(http(409))).toBe('accountInUse');
+    expect(deleteErrorKey(http(404))).toBe('unavailable');
+    expect(deleteErrorKey(http(500))).toBe(mapAuthError(http(500)));
+  });
+});

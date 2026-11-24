@@ -216,7 +216,9 @@
       "linkExpired": "This link has expired or was already used. Request a new one.",
       "unavailable": "This service isn't available yet. Try again later.",
       "cancelled": "Sign-in cancelled.",
-      "unknown": "Something went wrong. Try again."
+      "unknown": "Something went wrong. Try again.",
+      "adminAccount": "Administrator accounts are deleted from the website, by another administrator.",
+      "accountInUse": "This account still manages an organization. Contact support to delete it."
     }
   },
   "tabs": {
@@ -379,13 +381,42 @@
     "xpSteps": "Exercises",
     "xpPerfect": "No mistakes",
     "replay": "Lesson already done: 25% of the bonus.",
-    "estimate": "Estimate: the official total arrives once synced.",
+    "estimate": "Estimate: the official total shows once synced.",
     "accuracy": "Accuracy",
     "duration": "Time",
     "minutes": "{{count}} min",
     "synced": "Progress saved",
     "pending": "Waiting to sync",
-    "continue": "Continue"
+    "continue": "Continue",
+    "notPassedTitle": "Almost there!",
+    "notPassedBody": "You need at least 70% correct quiz answers to complete the lesson. Review it and try again: your attempt is saved.",
+    "attemptSynced": "Attempt saved",
+    "official": "Official total",
+    "xpBonus": "Exercise bonus",
+    "xpQuests": "Daily quests",
+    "xpOther": "Other",
+    "totalXp": "{{xp}} XP total · level {{level}}",
+    "levelUp": "Level {{level}} reached!",
+    "streak_one": "{{count}}-day streak",
+    "streak_other": "{{count}}-day streak",
+    "streakExtended": "Streak extended today",
+    "dailyGoal": "Daily goal: {{earned}}/{{target}} XP",
+    "dailyGoalReached": "Daily goal reached",
+    "questsTitle": "Daily quests",
+    "newBadges_one": "New badge",
+    "newBadges_other": "New badges",
+    "moduleCompleted": "You've finished every lesson in this module!",
+    "quests": {
+      "earn_xp": "Earn {{count}} XP",
+      "complete_lessons_one": "Finish {{count}} lesson",
+      "complete_lessons_other": "Finish {{count}} lessons",
+      "correct_first_try_one": "{{count}} answer right first time",
+      "correct_first_try_other": "{{count}} answers right first time",
+      "watch_video": "Watch a video",
+      "review_session": "Do a review",
+      "daily_goal": "Reach your daily goal",
+      "other": "Quest"
+    }
   },
   "downloads": {
     "title": "Downloads",

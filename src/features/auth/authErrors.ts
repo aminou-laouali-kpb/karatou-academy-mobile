@@ -10,6 +10,8 @@ export type AuthErrorKey =
   | 'samePassword'
   | 'unavailable'
   | 'cancelled'
+  | 'adminAccount'
+  | 'accountInUse'
   | 'unknown';
 
 type MaybeAuthError = { message?: string; code?: string; status?: number; name?: string } | null | undefined;
@@ -46,4 +48,19 @@ export function mapAuthError(error: MaybeAuthError): AuthErrorKey {
   )
     return 'network';
   return 'unknown';
+}
+
+/** Réponse d'erreur de `delete-account` → message affiché. */
+export function deleteErrorKey(error: unknown): AuthErrorKey {
+  const status = (error as { context?: { status?: number } }).context?.status;
+  switch (status) {
+    case 403:
+      return 'adminAccount';
+    case 409:
+      return 'accountInUse';
+    case 404:
+      return 'unavailable';
+    default:
+      return mapAuthError(error as MaybeAuthError);
+  }
 }

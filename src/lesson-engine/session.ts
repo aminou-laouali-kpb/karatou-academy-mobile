@@ -21,6 +21,12 @@ export type Session = {
   misses: number;
   /** Résultat par étape notée (identifiant d'origine). */
   results: Record<string, StepResult>;
+  /**
+   * Dernière réponse de l'apprenant à chaque étape notée, avant que la bonne
+   * réponse lui soit montrée (identifiant d'origine). La question reposée en
+   * fin de leçon ne la remplace pas : c'est elle que le serveur corrige.
+   */
+  answers?: Record<string, Answer>;
   startedAt: number;
   finishedAt: number | null;
 };
@@ -53,17 +59,19 @@ export function check(session: Session, answer: Answer): Session {
   const step = currentStep(session);
   if (!step || !isGraded(step) || session.phase !== 'answering') return session;
   const id = baseId(step.id);
+  const answers = isRequeued(step) ? session.answers : { ...session.answers, [id]: answer };
 
   if (isCorrect(step, answer)) {
     // Une question reposée garde son résultat « failed » : elle est seulement passée.
     const results = isRequeued(step)
       ? session.results
       : { ...session.results, [id]: session.misses === 0 ? ('firstTry' as const) : ('afterRetry' as const) };
-    return { ...session, phase: 'correct', results };
+    return { ...session, phase: 'correct', results, answers };
   }
 
   // La question reposée n'a qu'un essai : la réponse est montrée, puis on continue.
-  if (session.misses === 0 && !isRequeued(step)) return { ...session, phase: 'incorrect', misses: 1 };
+  if (session.misses === 0 && !isRequeued(step))
+    return { ...session, phase: 'incorrect', misses: 1, answers };
 
   const steps = isRequeued(step)
     ? session.steps
@@ -73,6 +81,7 @@ export function check(session: Session, answer: Answer): Session {
     steps,
     phase: 'revealed',
     misses: session.misses + 1,
+    answers,
     results: isRequeued(step) ? session.results : { ...session.results, [id]: 'failed' },
   };
 }

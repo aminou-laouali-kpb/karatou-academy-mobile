@@ -4,7 +4,7 @@ import * as WebBrowser from 'expo-web-browser';
 
 import { supabase } from '@/lib/supabase';
 
-import { mapAuthError, type AuthErrorKey } from './authErrors';
+import { deleteErrorKey, mapAuthError, type AuthErrorKey } from './authErrors';
 import { normalizeCountryCode } from './countries';
 import { parseAuthCallback } from './deepLink';
 import { useAuth } from './store';
@@ -163,11 +163,12 @@ export async function signOut(): Promise<void> {
  * (tâche B5 de la fiche, côté repo web). Exigée par Apple et Google.
  */
 export async function deleteAccount(): Promise<AuthResult> {
-  const { error } = await supabase.functions.invoke('delete-account', { method: 'POST' });
-  if (error) {
-    const status = (error as { context?: { status?: number } }).context?.status;
-    return fail(status === 404 ? 'unavailable' : mapAuthError(error));
-  }
+  const { error } = await supabase.functions.invoke('delete-account', {
+    method: 'POST',
+    // Confirmation exigée par la fonction : un appel accidentel ne supprime rien.
+    body: { confirm: 'DELETE' },
+  });
+  if (error) return fail(deleteErrorKey(error));
   await supabase.auth.signOut({ scope: 'local' });
   return { ok: true };
 }

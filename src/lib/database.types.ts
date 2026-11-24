@@ -1,5 +1,3 @@
-// Généré par « supabase gen types typescript » (npm run db:types). Ne pas modifier à la main.
-
 export type Json =
   | string
   | number
@@ -307,6 +305,36 @@ export type Database = {
         }
         Relationships: []
       }
+      karatou_badges: {
+        Row: {
+          category: string
+          criteria: Json
+          description: Json
+          display_order: number
+          icon: string
+          key: string
+          name: Json
+        }
+        Insert: {
+          category: string
+          criteria?: Json
+          description: Json
+          display_order?: number
+          icon: string
+          key: string
+          name: Json
+        }
+        Update: {
+          category?: string
+          criteria?: Json
+          description?: Json
+          display_order?: number
+          icon?: string
+          key?: string
+          name?: Json
+        }
+        Relationships: []
+      }
       karatou_certificates: {
         Row: {
           created_at: string
@@ -390,6 +418,7 @@ export type Database = {
           display_order: number
           duration: string
           id: string
+          interactive_steps: Json | null
           lesson_content: Json | null
           module_id: string
           status: string
@@ -404,6 +433,7 @@ export type Database = {
           display_order?: number
           duration?: string
           id?: string
+          interactive_steps?: Json | null
           lesson_content?: Json | null
           module_id: string
           status?: string
@@ -418,6 +448,7 @@ export type Database = {
           display_order?: number
           duration?: string
           id?: string
+          interactive_steps?: Json | null
           lesson_content?: Json | null
           module_id?: string
           status?: string
@@ -434,6 +465,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      karatou_daily_quests: {
+        Row: {
+          completed_at: string | null
+          progress: number
+          quest_date: string
+          quest_key: string
+          target: number
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          progress?: number
+          quest_date: string
+          quest_key: string
+          target: number
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          progress?: number
+          quest_date?: string
+          quest_key?: string
+          target?: number
+          user_id?: string
+        }
+        Relationships: []
       }
       karatou_enterprise_members: {
         Row: {
@@ -494,6 +552,71 @@ export type Database = {
           },
         ]
       }
+      karatou_league_groups: {
+        Row: {
+          closed_at: string | null
+          created_at: string
+          id: number
+          tier: number
+          week_start: string
+        }
+        Insert: {
+          closed_at?: string | null
+          created_at?: string
+          id?: number
+          tier: number
+          week_start: string
+        }
+        Update: {
+          closed_at?: string | null
+          created_at?: string
+          id?: number
+          tier?: number
+          week_start?: string
+        }
+        Relationships: []
+      }
+      karatou_league_members: {
+        Row: {
+          final_rank: number | null
+          group_id: number
+          joined_at: string
+          outcome: string | null
+          tier: number
+          user_id: string
+          week_start: string
+          weekly_xp: number
+        }
+        Insert: {
+          final_rank?: number | null
+          group_id: number
+          joined_at?: string
+          outcome?: string | null
+          tier: number
+          user_id: string
+          week_start: string
+          weekly_xp?: number
+        }
+        Update: {
+          final_rank?: number | null
+          group_id?: number
+          joined_at?: string
+          outcome?: string | null
+          tier?: number
+          user_id?: string
+          week_start?: string
+          weekly_xp?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "karatou_league_members_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "karatou_league_groups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       karatou_learner_progress: {
         Row: {
           completed_at: string
@@ -511,6 +634,63 @@ export type Database = {
           completed_at?: string
           course_id?: string
           module_slug?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      karatou_learner_stats: {
+        Row: {
+          created_at: string
+          current_streak: number
+          daily_goal_xp: number
+          last_active_date: string | null
+          league_tier: number
+          level: number
+          longest_streak: number
+          onboarding: Json
+          previous_timezone: string | null
+          show_in_leaderboards: boolean
+          streak_freezes: number
+          timezone: string
+          timezone_changed_at: string | null
+          total_xp: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_streak?: number
+          daily_goal_xp?: number
+          last_active_date?: string | null
+          league_tier?: number
+          level?: number
+          longest_streak?: number
+          onboarding?: Json
+          previous_timezone?: string | null
+          show_in_leaderboards?: boolean
+          streak_freezes?: number
+          timezone?: string
+          timezone_changed_at?: string | null
+          total_xp?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          current_streak?: number
+          daily_goal_xp?: number
+          last_active_date?: string | null
+          league_tier?: number
+          level?: number
+          longest_streak?: number
+          onboarding?: Json
+          previous_timezone?: string | null
+          show_in_leaderboards?: boolean
+          streak_freezes?: number
+          timezone?: string
+          timezone_changed_at?: string | null
+          total_xp?: number
+          updated_at?: string
           user_id?: string
         }
         Relationships: []
@@ -554,6 +734,66 @@ export type Database = {
           signature?: string
           source_sha256?: string
           status?: string
+        }
+        Relationships: []
+      }
+      karatou_lesson_attempts: {
+        Row: {
+          correct_after_retry: number
+          correct_first_try: number
+          course_id: string
+          created_at: string
+          duration_seconds: number | null
+          finished_at: string
+          graded_steps: number
+          id: string
+          language: string
+          module_slug: string
+          outcome: string
+          platform: string
+          started_at: string | null
+          step_results: Json
+          user_id: string
+          video_watched: boolean
+          xp_breakdown: Json
+        }
+        Insert: {
+          correct_after_retry?: number
+          correct_first_try?: number
+          course_id: string
+          created_at?: string
+          duration_seconds?: number | null
+          finished_at: string
+          graded_steps?: number
+          id: string
+          language: string
+          module_slug: string
+          outcome: string
+          platform: string
+          started_at?: string | null
+          step_results?: Json
+          user_id: string
+          video_watched?: boolean
+          xp_breakdown?: Json
+        }
+        Update: {
+          correct_after_retry?: number
+          correct_first_try?: number
+          course_id?: string
+          created_at?: string
+          duration_seconds?: number | null
+          finished_at?: string
+          graded_steps?: number
+          id?: string
+          language?: string
+          module_slug?: string
+          outcome?: string
+          platform?: string
+          started_at?: string | null
+          step_results?: Json
+          user_id?: string
+          video_watched?: boolean
+          xp_breakdown?: Json
         }
         Relationships: []
       }
@@ -723,6 +963,45 @@ export type Database = {
         }
         Relationships: []
       }
+      karatou_review_items: {
+        Row: {
+          box: number
+          course_id: string
+          created_at: string
+          due_date: string
+          item_key: string
+          kind: string
+          last_result: string | null
+          last_reviewed_at: string | null
+          module_slug: string
+          user_id: string
+        }
+        Insert: {
+          box?: number
+          course_id: string
+          created_at?: string
+          due_date: string
+          item_key: string
+          kind: string
+          last_result?: string | null
+          last_reviewed_at?: string | null
+          module_slug: string
+          user_id: string
+        }
+        Update: {
+          box?: number
+          course_id?: string
+          created_at?: string
+          due_date?: string
+          item_key?: string
+          kind?: string
+          last_result?: string | null
+          last_reviewed_at?: string | null
+          module_slug?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       karatou_rubriques: {
         Row: {
           color: string
@@ -820,6 +1099,65 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      karatou_user_badges: {
+        Row: {
+          badge_key: string
+          earned_at: string
+          user_id: string
+        }
+        Insert: {
+          badge_key: string
+          earned_at?: string
+          user_id: string
+        }
+        Update: {
+          badge_key?: string
+          earned_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "karatou_user_badges_badge_key_fkey"
+            columns: ["badge_key"]
+            isOneToOne: false
+            referencedRelation: "karatou_badges"
+            referencedColumns: ["key"]
+          },
+        ]
+      }
+      karatou_xp_events: {
+        Row: {
+          amount: number
+          created_at: string
+          id: number
+          local_date: string
+          occurred_at: string
+          reason: string
+          ref: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: number
+          local_date: string
+          occurred_at: string
+          reason: string
+          ref: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: number
+          local_date?: string
+          occurred_at?: string
+          reason?: string
+          ref?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       modules: {
         Row: {
@@ -1721,6 +2059,18 @@ export type Database = {
           isSetofReturn: true
         }
       }
+      karatou_get_league: { Args: never; Returns: Json }
+      karatou_get_learner_home: { Args: never; Returns: Json }
+      karatou_get_org_leaderboard: { Args: { org_id: string }; Returns: Json }
+      karatou_get_streak_calendar: {
+        Args: { month: string }
+        Returns: {
+          active: boolean
+          day: string
+          frozen: boolean
+          xp: number
+        }[]
+      }
       karatou_issue_certificate: {
         Args: { input_module_slug: string }
         Returns: {
@@ -1758,6 +2108,8 @@ export type Database = {
           regions: number
         }[]
       }
+      karatou_record_lesson_attempt: { Args: { payload: Json }; Returns: Json }
+      karatou_record_review: { Args: { results: Json }; Returns: Json }
       karatou_redeem_scholarship: {
         Args: { input_code: string }
         Returns: {
@@ -1768,6 +2120,25 @@ export type Database = {
           scholarship_code: string
         }[]
       }
+      karatou_revoke_certificate: {
+        Args: { input_uid: string }
+        Returns: string
+      }
+      karatou_submit_quiz: {
+        Args: {
+          input_answers: string[]
+          input_completed_at?: string
+          input_course_id: string
+          input_lang: string
+          input_module_slug: string
+        }
+        Returns: {
+          correct: number
+          status: string
+          total: number
+        }[]
+      }
+      karatou_update_learning_prefs: { Args: { prefs: Json }; Returns: Json }
       karatou_verify_certificate: {
         Args: { input_uid: string }
         Returns: {

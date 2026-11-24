@@ -188,4 +188,9 @@ describe('mergePending', () => {
     ]);
     expect(mergePending(undefined, [pending('c2')], 'u1')).toHaveLength(1);
   });
+
+  it('ne coche pas une leçon dont le quiz ne sera pas validé', () => {
+    const failed = { userId: 'u1', payload: { ...pending('c2').payload, quizPassed: false } };
+    expect(mergePending([row], [failed], 'u1')).toEqual([row]);
+  });
 });
