@@ -21,6 +21,8 @@ export type LessonSummary = {
   gradedCount: number;
   durationMs: number;
   firstCompletion: boolean;
+  /** Quiz validé (≥ 70 %), ou leçon déjà terminée. Estimation locale. */
+  quizPassed: boolean;
   /** Clé d'idempotence de la tentative envoyée par la file hors ligne. */
   attemptId: string;
   /** `false` pour un aperçu (écran dev) : rien n'a été mis dans la file. */

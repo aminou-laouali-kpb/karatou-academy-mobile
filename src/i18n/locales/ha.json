@@ -216,7 +216,9 @@
       "linkExpired": "Wannan hanyar ta ƙare ko an riga an yi amfani da ita. Nemi sabuwa.",
       "unavailable": "Wannan sabis ba ya samuwa tukuna. Sake gwadawa nan gaba.",
       "cancelled": "An soke shiga.",
-      "unknown": "Wani abu ya faru. Sake gwadawa."
+      "unknown": "Wani abu ya faru. Sake gwadawa.",
+      "adminAccount": "Ana goge asusun mai gudanarwa ta shafin yanar gizo, ta hannun wani mai gudanarwa.",
+      "accountInUse": "Wannan asusun yana kula da wata ƙungiya har yanzu. Tuntuɓi tallafi don goge shi."
     }
   },
   "tabs": {
@@ -384,7 +386,10 @@
     "minutes": "minti {{count}}",
     "synced": "An adana ci gabanka",
     "pending": "Ana jiran daidaitawa",
-    "continue": "Ci gaba"
+    "continue": "Ci gaba",
+    "notPassedTitle": "Kusa da kai!",
+    "notPassedBody": "Ana buƙatar aƙalla kashi 70 na amsoshin tambayoyi daidai don kammala darasin. Sake karanta shi ka sake gwadawa: an adana ƙoƙarinka.",
+    "attemptSynced": "An adana ƙoƙarin"
   },
   "downloads": {
     "title": "Abubuwan da aka sauke",

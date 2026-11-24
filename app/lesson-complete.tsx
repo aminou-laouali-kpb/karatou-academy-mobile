@@ -9,17 +9,21 @@ import { usePendingItems } from '@/features/lesson/queue';
 import { useLessonStore } from '@/features/lesson/store';
 
 /**
- * Fin de leçon (E09), version locale de S4 : XP estimé, précision, durée et
- * état de la synchronisation. Série, quêtes et badges arrivent en S6.
+ * Fin de leçon (E09) : XP estimé, précision, durée et état de la
+ * synchronisation. Un quiz sous 70 % n'est pas validé : pas d'XP, on invite à
+ * réessayer. Série, quêtes et badges arrivent avec la suite de S6.
  */
 export default function LessonCompleteScreen() {
   const { t } = useTranslation();
   const summary = useLessonStore((s) => s.lastSummary);
   const pending = usePendingItems().some((item) => item.id === summary?.attemptId);
 
+  const passed = summary?.quizPassed !== false;
   useEffect(() => {
-    void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-  }, []);
+    void Haptics.notificationAsync(
+      passed ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Warning,
+    );
+  }, [passed]);
 
   const leave = () => (router.canGoBack() ? router.back() : router.replace('/home'));
 
@@ -43,29 +47,37 @@ export default function LessonCompleteScreen() {
     <Screen footer={<Button label={t('lessonComplete.continue')} onPress={leave} />}>
       <View className="items-center gap-2 pt-10">
         <Text variant="display" accessibilityElementsHidden importantForAccessibility="no">
-          🎉
+          {passed ? '🎉' : '💪'}
         </Text>
         <Text variant="h1" className="text-center">
-          {t('lessonComplete.title')}
+          {t(passed ? 'lessonComplete.title' : 'lessonComplete.notPassedTitle')}
         </Text>
         <Text variant="body" className="text-center text-gray-500">
           {summary.title}
         </Text>
       </View>
 
-      <View className="gap-3 rounded-lg border-2 border-gold-400 bg-gold-50 p-4">
-        <Text variant="h1" className="text-center text-gold-700">
-          {t('lessonComplete.xpTotal', { count: xp.total })}
+      {passed ? null : (
+        <Text variant="body" className="text-center">
+          {t('lessonComplete.notPassedBody')}
         </Text>
-        {rows.map((row) => (
-          <View key={row.label} className="flex-row justify-between">
-            <Text variant="body">{row.label}</Text>
-            <Text variant="label">+{row.value}</Text>
-          </View>
-        ))}
-        {!summary.firstCompletion ? <Text variant="meta">{t('lessonComplete.replay')}</Text> : null}
-        <Text variant="meta">{t('lessonComplete.estimate')}</Text>
-      </View>
+      )}
+
+      {passed ? (
+        <View className="gap-3 rounded-lg border-2 border-gold-400 bg-gold-50 p-4">
+          <Text variant="h1" className="text-center text-gold-700">
+            {t('lessonComplete.xpTotal', { count: xp.total })}
+          </Text>
+          {rows.map((row) => (
+            <View key={row.label} className="flex-row justify-between">
+              <Text variant="body">{row.label}</Text>
+              <Text variant="label">+{row.value}</Text>
+            </View>
+          ))}
+          {!summary.firstCompletion ? <Text variant="meta">{t('lessonComplete.replay')}</Text> : null}
+          <Text variant="meta">{t('lessonComplete.estimate')}</Text>
+        </View>
+      ) : null}
 
       <View className="flex-row gap-3">
         <Stat label={t('lessonComplete.accuracy')} value={`${Math.round(summary.accuracy * 100)} %`} />
@@ -78,7 +90,9 @@ export default function LessonCompleteScreen() {
           className={pending ? 'rounded-md bg-orange-50 px-3 py-2' : 'rounded-md bg-emerald-50 px-3 py-2'}
         >
           <Text variant="label" className={pending ? 'text-orange-700' : 'text-emerald-700'}>
-            {pending ? `⏳ ${t('lessonComplete.pending')}` : `✓ ${t('lessonComplete.synced')}`}
+            {pending
+              ? `⏳ ${t('lessonComplete.pending')}`
+              : `✓ ${t(passed ? 'lessonComplete.synced' : 'lessonComplete.attemptSynced')}`}
           </Text>
         </View>
       ) : null}

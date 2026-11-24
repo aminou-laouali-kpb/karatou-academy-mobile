@@ -1697,6 +1697,36 @@ export type Database = {
     }
     Functions: {
       karatou_attestation_registry_snapshot: { Args: never; Returns: Json }
+      karatou_get_learner_home: { Args: never; Returns: Json }
+      karatou_get_league: { Args: never; Returns: Json }
+      karatou_get_org_leaderboard: { Args: { org_id: string }; Returns: Json }
+      karatou_get_streak_calendar: {
+        Args: { month: string }
+        Returns: {
+          active: boolean
+          day: string
+          frozen: boolean
+          xp: number
+        }[]
+      }
+      karatou_record_lesson_attempt: { Args: { payload: Json }; Returns: Json }
+      karatou_record_review: { Args: { results: Json }; Returns: Json }
+      karatou_revoke_certificate: { Args: { input_uid: string }; Returns: string }
+      karatou_submit_quiz: {
+        Args: {
+          input_answers: string[]
+          input_completed_at?: string
+          input_course_id: string
+          input_lang: string
+          input_module_slug: string
+        }
+        Returns: {
+          correct: number
+          status: string
+          total: number
+        }[]
+      }
+      karatou_update_learning_prefs: { Args: { prefs: Json }; Returns: Json }
       karatou_create_scholarship: {
         Args: { input_organization_id: string }
         Returns: {

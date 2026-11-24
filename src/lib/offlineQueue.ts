@@ -10,9 +10,14 @@
 export type LessonCompletedPayload = {
   moduleSlug: string;
   courseId: string;
+  /** Langue de la version de la leçon affichée (celle dont le serveur corrige le quiz). */
   lang: string;
-  /** Résultats des étapes notées, pour la RPC `karatou_record_lesson_attempt` (S6). */
+  /** Résultats des étapes notées, par identifiant d'étape. */
   results: Record<string, 'firstTry' | 'afterRetry' | 'failed'>;
+  /** Réponse à chaque question du quiz, dans l'ordre de `lesson_content.quiz`. */
+  quizAnswers?: string[];
+  /** Estimation locale : le quiz atteint 70 %. Le serveur fait foi. */
+  quizPassed?: boolean;
   startedAt: string;
   completedAt: string;
 };

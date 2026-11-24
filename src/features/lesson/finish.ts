@@ -1,6 +1,6 @@
 import * as Crypto from 'expo-crypto';
 
-import { accuracy, estimateXp, resultsOf, type Session } from '@/lesson-engine';
+import { accuracy, estimateXp, quizAnswers, quizPassed, resultsOf, type Session } from '@/lesson-engine';
 
 import { offlineQueue } from './queue';
 import type { LessonSummary } from './store';
@@ -22,18 +22,22 @@ type FinishInput = {
 /**
  * Fin de leçon : la tentative part dans la file hors ligne (envoyée tout de
  * suite si le réseau le permet) et l'écran E09 reçoit un bilan local.
- * L'XP affiché est une estimation : la base fera foi (S6).
+ * L'XP affiché est une estimation : la base fait foi. Une 1re complétion dont
+ * le quiz n'atteint pas 70 % n'est pas validée : aucun XP.
  */
 export function finishLesson(input: FinishInput): LessonSummary {
   const now = input.now ?? new Date();
   const results = resultsOf(input.session);
   const attemptId = Crypto.randomUUID();
-  if (input.send !== false) enqueueAttempt(attemptId, input, now);
+  const passed = !input.firstCompletion || quizPassed(input.session);
+  if (input.send !== false) enqueueAttempt(attemptId, input, now, passed);
+  const xp = estimateXp(results, input.firstCompletion);
   return {
+    quizPassed: passed,
     moduleSlug: input.moduleSlug,
     courseId: input.courseId,
     title: input.title,
-    xp: estimateXp(results, input.firstCompletion),
+    xp: passed ? xp : { completion: 0, steps: 0, perfect: 0, total: 0 },
     accuracy: accuracy(results),
     gradedCount: results.length,
     durationMs: now.getTime() - input.session.startedAt,
@@ -43,7 +47,7 @@ export function finishLesson(input: FinishInput): LessonSummary {
   };
 }
 
-function enqueueAttempt(attemptId: string, input: FinishInput, now: Date) {
+function enqueueAttempt(attemptId: string, input: FinishInput, now: Date, passed: boolean) {
   offlineQueue.enqueue({
     id: attemptId,
     kind: 'lesson_completed',
@@ -53,6 +57,8 @@ function enqueueAttempt(attemptId: string, input: FinishInput, now: Date) {
       courseId: input.courseId,
       lang: input.lang,
       results: input.session.results,
+      quizAnswers: quizAnswers(input.session),
+      quizPassed: passed,
       startedAt: new Date(input.session.startedAt).toISOString(),
       completedAt: now.toISOString(),
     },

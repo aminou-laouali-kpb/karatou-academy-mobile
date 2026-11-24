@@ -216,7 +216,9 @@
       "linkExpired": "Ce lien a expiré ou a déjà servi. Demande un nouveau lien.",
       "unavailable": "Ce service n'est pas encore disponible. Réessaie plus tard.",
       "cancelled": "Connexion annulée.",
-      "unknown": "Une erreur est survenue. Réessaie."
+      "unknown": "Une erreur est survenue. Réessaie.",
+      "adminAccount": "Un compte administrateur se supprime depuis le site web, par un autre administrateur.",
+      "accountInUse": "Ce compte gère encore une organisation. Écris au support pour le supprimer."
     }
   },
   "tabs": {
@@ -384,7 +386,10 @@
     "minutes": "{{count}} min",
     "synced": "Progression enregistrée",
     "pending": "En attente de synchronisation",
-    "continue": "Continuer"
+    "continue": "Continuer",
+    "notPassedTitle": "Presque !",
+    "notPassedBody": "Il faut au moins 70 % de bonnes réponses au quiz pour valider la leçon. Relis-la et réessaie : ta tentative est enregistrée.",
+    "attemptSynced": "Tentative enregistrée"
   },
   "downloads": {
     "title": "Téléchargements",
