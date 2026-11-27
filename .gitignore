@@ -44,3 +44,7 @@ example
 
 # Rapports de couverture Jest
 coverage/
+
+# Captures des scénarios Maestro
+e2e-artifacts/
+supabase/.temp/

@@ -1,0 +1,34 @@
+# Joue la leçon ouverte jusqu'à l'écran de fin, quel que soit son contenu.
+# Stratégie volontairement naïve : première option partout. Une réponse
+# fausse donne « Réessayer », puis la solution, puis la question revient à
+# la fin : la leçon se termine toujours. Le score du quiz dépend donc des
+# clés de la leçon (voir les scénarios qui l'appellent).
+appId: academy.karatou.app
+---
+- repeat:
+    while:
+      notVisible:
+        id: "lesson-complete-(passed|failed)"
+    times: 200
+    commands:
+      - runFlow:
+          when:
+            visible:
+              id: "lesson-cta"
+              enabled: false
+          file: answer-step.yaml
+      - runFlow:
+          when:
+            visible:
+              id: "lesson-cta"
+              enabled: true
+          commands:
+            - tapOn:
+                id: "lesson-cta"
+      - runFlow:
+          when:
+            visible:
+              id: "feedback-cta"
+          commands:
+            - tapOn:
+                id: "feedback-cta"

@@ -34,6 +34,7 @@ export default function PlanScreen() {
       back
       footer={
         <Button
+          testID="plan-cta"
           label={t('onboarding.plan.cta')}
           onPress={() => {
             complete();

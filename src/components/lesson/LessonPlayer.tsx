@@ -289,7 +289,7 @@ function StepView({
           };
     footer = (
       <View className="px-5 pt-3" style={{ paddingBottom: bottom + 8 }}>
-        <Button label={cta.label} disabled={cta.disabled} onPress={cta.onPress} />
+        <Button testID="lesson-cta" label={cta.label} disabled={cta.disabled} onPress={cta.onPress} />
       </View>
     );
   }

@@ -78,7 +78,7 @@ function Question({ step }: { step: QuestionStep }) {
           accessibilityLabel={t('common.stepOf', { current: index + 1, total: QUESTION_STEPS.length })}
         />
       }
-      footer={<Button label={t('common.continue')} disabled={!answered} onPress={goNext} />}
+      footer={<Button testID="question-continue" label={t('common.continue')} disabled={!answered} onPress={goNext} />}
     >
       <View className="gap-2">
         <Text variant="h1">{t(`onboarding.${step}.title`)}</Text>
@@ -104,6 +104,7 @@ function Question({ step }: { step: QuestionStep }) {
           SUPPORTED_LANGUAGES.map((lang) => (
             <OptionCard
               key={lang}
+              testID={`option-${lang}`}
               label={t(`language.${lang}`)}
               leading={<LanguageBadge lang={lang} />}
               selected={i18n.language === lang}
@@ -115,6 +116,7 @@ function Question({ step }: { step: QuestionStep }) {
           GOALS.map((goal) => (
             <OptionCard
               key={goal}
+              testID={`option-${goal}`}
               label={t(`onboarding.goal.${goal}`)}
               leading={<Text variant="h2">{GOAL_EMOJI[goal]}</Text>}
               selected={answers.goal === goal}
@@ -126,6 +128,7 @@ function Question({ step }: { step: QuestionStep }) {
           LEVELS.map((level) => (
             <OptionCard
               key={level}
+              testID={`option-${level}`}
               label={t(`onboarding.level.${level}`)}
               description={t(`onboarding.level.${level}Hint`)}
               leading={<Text variant="h2">{LEVEL_EMOJI[level]}</Text>}
@@ -139,6 +142,7 @@ function Question({ step }: { step: QuestionStep }) {
             {MOMENTS.map((moment) => (
               <OptionCard
                 key={moment}
+                testID={`option-${moment}`}
                 className="w-[48.5%]"
                 label={t(`onboarding.moment.${moment}`)}
                 leading={<Text variant="h2">{MOMENT_EMOJI[moment]}</Text>}
@@ -153,6 +157,7 @@ function Question({ step }: { step: QuestionStep }) {
           DAILY_GOALS.map((goal) => (
             <OptionCard
               key={goal.key}
+              testID={`option-${goal.key}`}
               label={t(`onboarding.dailyGoal.${goal.key}`)}
               description={t('onboarding.dailyGoal.detail', { minutes: goal.minutes, xp: goal.xp })}
               selected={answers.dailyGoalXp === goal.xp}
@@ -165,6 +170,7 @@ function Question({ step }: { step: QuestionStep }) {
             {REMINDER_TIMES.map((time) => (
               <OptionCard
                 key={time}
+                testID={`option-${time}`}
                 label={t('onboarding.reminder.at', { time })}
                 leading={<Text variant="h2">⏰</Text>}
                 selected={answers.reminderTime === time}
@@ -172,6 +178,7 @@ function Question({ step }: { step: QuestionStep }) {
               />
             ))}
             <OptionCard
+              testID="option-none"
               label={t('onboarding.reminder.none')}
               leading={<Text variant="h2">🔕</Text>}
               selected={answers.reminderTime === null}

@@ -49,8 +49,8 @@ export default function LessonCompleteScreen() {
   ].filter((row) => row.value > 0);
 
   return (
-    <Screen footer={<Button label={t('lessonComplete.continue')} onPress={leave} />}>
-      <View className="items-center gap-2 pt-10">
+    <Screen footer={<Button testID="lesson-complete-continue" label={t('lessonComplete.continue')} onPress={leave} />}>
+      <View className="items-center gap-2 pt-10" testID={passed ? 'lesson-complete-passed' : 'lesson-complete-failed'}>
         <Text variant="display" accessibilityElementsHidden importantForAccessibility="no">
           {passed ? '🎉' : '💪'}
         </Text>

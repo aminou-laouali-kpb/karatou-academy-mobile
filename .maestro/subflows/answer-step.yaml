@@ -1,0 +1,86 @@
+# Donne une réponse, juste ou non, à l'exercice affiché pour activer « Vérifier ».
+appId: academy.karatou.app
+---
+# QCM du quiz : toujours l'option A.
+- runFlow:
+    when:
+      visible:
+        id: "mcq-.*"
+    commands:
+      - tapOn:
+          id: "mcq-a"
+
+# Vrai ou faux.
+- runFlow:
+    when:
+      visible:
+        id: "tf-.*"
+    commands:
+      - tapOn:
+          id: "tf-.*"
+          index: 0
+
+# Choix multiples : la première option.
+- runFlow:
+    when:
+      visible:
+        id: "multi-.*"
+    commands:
+      - tapOn:
+          id: "multi-.*"
+          index: 0
+
+# Texte à trous : les mots de la banque, dans l'ordre, jusqu'à remplir les trous.
+- runFlow:
+    when:
+      visible:
+        id: "bank-.*"
+    commands:
+      - evalScript: ${output.bank = 0}
+      - repeat:
+          while:
+            visible:
+              id: "lesson-cta"
+              enabled: false
+          times: 8
+          commands:
+            - tapOn:
+                id: ${'bank-' + output.bank}
+                optional: true
+            - evalScript: ${output.bank = output.bank + 1}
+
+# Association : le i-ème terme avec la i-ème définition.
+- runFlow:
+    when:
+      visible:
+        id: "left-.*"
+    commands:
+      - evalScript: ${output.pair = 0}
+      - repeat:
+          while:
+            visible:
+              id: "lesson-cta"
+              enabled: false
+          times: 8
+          commands:
+            - scrollUntilVisible:
+                element:
+                  id: "left-.*"
+                  index: ${output.pair}
+                direction: UP
+                optional: true
+            - tapOn:
+                id: "left-.*"
+                index: ${output.pair}
+                optional: true
+            - scrollUntilVisible:
+                element:
+                  id: "right-.*"
+                  index: ${output.pair}
+                direction: DOWN
+                optional: true
+            - tapOn:
+                id: "right-.*"
+                index: ${output.pair}
+                optional: true
+            - evalScript: ${output.pair = output.pair + 1}

@@ -39,11 +39,13 @@ export default function Welcome() {
 
           <View className="gap-3">
             <Button
+              testID="welcome-start"
               label={t('welcome.start')}
               variant="gold"
               onPress={() => router.push('/question/language')}
             />
             <Button
+              testID="welcome-sign-in"
               label={t('welcome.haveAccount')}
               variant="ghostInverse"
               onPress={() => router.push('/sign-in')}

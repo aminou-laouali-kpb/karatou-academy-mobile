@@ -1,0 +1,10 @@
+# Scénarios E2E (fiche §11, S9). L'onboarding passe en dernier : il efface
+# les données de l'app, donc la session du compte de test.
+flows:
+  - "*.yaml"
+executionOrder:
+  continueOnFailure: true
+  flowsOrder:
+    - lesson
+    - quiz-failed
+    - onboarding

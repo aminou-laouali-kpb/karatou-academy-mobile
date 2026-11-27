@@ -43,6 +43,7 @@ export default function SignInScreen() {
 
       <View className="gap-4">
         <TextField
+          testID="sign-in-email"
           label={t('auth.fields.email')}
           value={email}
           onChangeText={setEmail}
@@ -54,6 +55,7 @@ export default function SignInScreen() {
           returnKeyType="next"
         />
         <TextField
+          testID="sign-in-password"
           label={t('auth.fields.password')}
           value={password}
           onChangeText={setPassword}
@@ -69,7 +71,7 @@ export default function SignInScreen() {
       </View>
 
       <FormError error={error} />
-      <Button label={t('auth.signIn.submit')} loading={loading} onPress={() => void submit()} />
+      <Button testID="sign-in-submit" label={t('auth.signIn.submit')} loading={loading} onPress={() => void submit()} />
       <Link href="/sign-up" replace asChild>
         <Button variant="ghost" label={t('auth.signIn.noAccount')} />
       </Link>

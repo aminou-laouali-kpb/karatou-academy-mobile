@@ -1,0 +1,58 @@
+# Premier lancement : bienvenue, six questions, plan, puis l'inscription.
+# Efface les données de l'app (et donc la session) : à lancer en dernier.
+appId: academy.karatou.app
+name: onboarding
+---
+- launchApp:
+    clearState: true
+    clearKeychain: true
+# Build de dev seulement : sans données, le lanceur Expo a oublié le serveur
+# Metro. On rouvre le premier serveur trouvé, puis on ferme le menu de dev.
+# On attend d'abord que le lanceur s'affiche : juste après l'effacement, il
+# peut mettre quelques secondes, et la condition ci-dessous serait sautée.
+- extendedWaitUntil:
+    visible: "Development Build"
+    timeout: 15000
+    optional: true
+- runFlow:
+    when:
+      visible: "Development Build"
+    commands:
+      - tapOn: "http://.*:8081"
+      - extendedWaitUntil:
+          visible: "Go home"
+          timeout: 30000
+          optional: true
+      - tapOn:
+          id: "xmark"
+          optional: true
+- extendedWaitUntil:
+    visible:
+      id: "welcome-start"
+    timeout: 60000
+- tapOn:
+    id: "welcome-start"
+# Langue : français.
+- tapOn:
+    id: "option-fr"
+- tapOn:
+    id: "question-continue"
+# Objectif, niveau, moment, objectif quotidien : la première option.
+- repeat:
+    times: 4
+    commands:
+      - tapOn:
+          id: "option-.*"
+          index: 0
+      - tapOn:
+          id: "question-continue"
+# Rappel : aucun, pour ne pas déclencher la demande de notifications.
+- tapOn:
+    id: "option-none"
+- tapOn:
+    id: "question-continue"
+- tapOn:
+    id: "plan-cta"
+- assertVisible:
+    id: "sign-up-submit"
+- takeScreenshot: e2e-artifacts/onboarding-sign-up

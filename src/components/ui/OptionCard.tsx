@@ -15,6 +15,7 @@ export type OptionCardProps = {
   selected: boolean;
   onPress: () => void;
   className?: string;
+  testID?: string;
 };
 
 /**
@@ -29,9 +30,11 @@ export function OptionCard({
   selected,
   onPress,
   className,
+  testID,
 }: OptionCardProps) {
   return (
     <Pressable
+      testID={testID}
       accessibilityRole="radio"
       accessibilityState={{ checked: selected }}
       accessibilityLabel={[label, description, trailing].filter(Boolean).join(', ')}

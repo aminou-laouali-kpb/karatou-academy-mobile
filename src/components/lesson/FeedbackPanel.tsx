@@ -96,6 +96,7 @@ export function FeedbackPanel({
         {explanation ? <Text variant="body">{explanation}</Text> : null}
         {phase === 'revealed' && !again ? <Text variant="meta">{t('lesson.revealedLater')}</Text> : null}
         <Button
+          testID="feedback-cta"
           label={phase === 'incorrect' ? t('lesson.retry') : t('lesson.continue')}
           variant={good ? 'primary' : 'secondary'}
           onPress={onPress}
