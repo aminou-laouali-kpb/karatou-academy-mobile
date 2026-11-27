@@ -8,6 +8,12 @@ name: onboarding
     clearKeychain: true
 # Build de dev seulement : sans données, le lanceur Expo a oublié le serveur
 # Metro. On rouvre le premier serveur trouvé, puis on ferme le menu de dev.
+# On attend d'abord que le lanceur s'affiche : juste après l'effacement, il
+# peut mettre quelques secondes, et la condition ci-dessous serait sautée.
+- extendedWaitUntil:
+    visible: "Development Build"
+    timeout: 15000
+    optional: true
 - runFlow:
     when:
       visible: "Development Build"

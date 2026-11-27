@@ -8,6 +8,7 @@ env:
   LESSON: data-analysis/d6
 ---
 - launchApp
+- runFlow: subflows/close-dev-menu.yaml
 - runFlow: subflows/sign-in.yaml
 - openLink: karatou://lesson/${LESSON}
 - runFlow: subflows/play-lesson.yaml
