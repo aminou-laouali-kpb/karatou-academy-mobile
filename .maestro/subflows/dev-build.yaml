@@ -1,0 +1,34 @@
+# Build de dev seulement, sans effet sur un build de production.
+# 1. Le lanceur Expo s'affiche au lieu de l'app (démarrage à froid sur
+#    Android, données effacées) : on rouvre le premier serveur Metro listé.
+# 2. Le menu de développement s'ouvre par-dessus l'app (premier lancement
+#    après un redémarrage de Metro) : on le ferme.
+appId: academy.karatou.app
+---
+- extendedWaitUntil:
+    visible: "Development Build|Runtime version: .*"
+    timeout: 15000
+    optional: true
+- runFlow:
+    when:
+      visible: "Development Build"
+    commands:
+      - tapOn: "http://.*:8081"
+      - extendedWaitUntil:
+          visible: "Runtime version: .*"
+          timeout: 60000
+          optional: true
+- runFlow:
+    when:
+      visible: "Runtime version: .*"
+    commands:
+      # Première ouverture : un écran d'accueil du menu avec « Continue ».
+      - tapOn:
+          text: "Continue"
+          optional: true
+      - tapOn:
+          text: "Close"
+          optional: true
+      - tapOn:
+          id: "xmark"
+          optional: true
